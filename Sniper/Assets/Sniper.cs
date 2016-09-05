@@ -18,6 +18,8 @@ public class Sniper : MonoBehaviour {
 
         var device = SteamVR_Controller.Input((int)rightController.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) {
+            device.TriggerHapticPulse(2000);
+            
 
             GameObject go = Instantiate(BulletPrefab, BulletSpawnPoint.transform.position, BulletSpawnPoint.transform.rotation) as GameObject;
 

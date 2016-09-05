@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TutorialBullet : MonoBehaviour {
 
@@ -43,6 +44,13 @@ public class TutorialBullet : MonoBehaviour {
                 hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
                 
                 Destroy(gameObject);
+            }else if (hit.collider.CompareTag("Navigation")) {
+                if (SceneManager.GetActiveScene().buildIndex == 0) {
+                    SceneManager.LoadScene(1);
+                }else {
+                    SceneManager.LoadScene(0);
+                }
+
             }
         }
     }
