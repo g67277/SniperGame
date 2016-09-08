@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Sniper Scene/Sniper_Level2.unity
+- path: Assets/Sniper Scene/Sniper_Level1.unity
   isLoaded: 1
   isActive: 1
