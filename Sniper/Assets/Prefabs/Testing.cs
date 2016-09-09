@@ -18,13 +18,19 @@ public class Testing : MonoBehaviour {
 	}
 
     void OnCollisionEnter() {
-        GetComponent<Animator>().Play("Die", 1);
-        Debug.Log("Punk Got hit....");
+       // if (collider.GetType() == typeof(BoxCollider)) {
+            GetComponent<Animator>().Play("nazir", 1);
+            Debug.Log("Punk Got hit in the chest....");
+        //} else if (collider.GetType() == typeof(SphereCollider)) {
+        //    GetComponent<Animator>().Play("Die", 1);
+        //    Debug.Log("Punk Got hit in the face....");
+        //}
+        
     }
 
-    public void Animate (GameObject gameObject) {
-        GetComponent<Animator>().Play("Die", 1);
-    }
+    //public void Animate (GameObject gameObject) {
+    //    GetComponent<Animator>().Play("Die", 1);
+    //}
 	
 	// Update is called once per frame
 	void Update () {

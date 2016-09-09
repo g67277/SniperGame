@@ -73,6 +73,8 @@
     <Compile Include="Assets\Arms\InteractableItem.cs" />
     <Compile Include="Assets\Arms\WandController.cs" />
     <Compile Include="Assets\For Sure fiiles\ControllerHandling.cs" />
+    <Compile Include="Assets\For Sure fiiles\PersonAnimator.cs" />
+    <Compile Include="Assets\For Sure fiiles\SniperSounds.cs" />
     <Compile Include="Assets\Prefabs\Testing.cs" />
     <Compile Include="Assets\RandomAgent.cs" />
     <Compile Include="Assets\Sniper.cs" />

@@ -7,7 +7,8 @@ public class TutorialBullet : MonoBehaviour {
     public Vector3 currentPosition;
     public Vector3 currentVelocity;
 
-    public Animator animator;
+    //public Animator animator;
+    PersonAnimator pAnimator;
 
     Vector3 newPosition = Vector3.zero;
     Vector3 newVelocity = Vector3.zero;
@@ -39,9 +40,16 @@ public class TutorialBullet : MonoBehaviour {
             if (hit.collider.CompareTag("Target")) {
                 
                 Debug.Log("Hit target!");
-                animator = hit.collider.gameObject.GetComponent<Animator>();
-                animator.Play("Death_01", -1, 0f);
-                hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
+                pAnimator = hit.collider.gameObject.transform.root.gameObject.GetComponent<PersonAnimator>();
+                //pAnimator.animateHit(hit.collider);
+                //animator = hit.collider.gameObject.GetComponent<Animator>();
+                //animator.Play("Death_01", -1, 0f);
+
+                Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
+                //Debug.Log("Hit point name: " + hit.collider.gameObject.name);
+                pAnimator.hitResult(hit.collider.gameObject.name);
+                //pAnimator.stopAnimation();
+                hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
                 
                 Destroy(gameObject);
             }else if (hit.collider.CompareTag("Navigation")) {
