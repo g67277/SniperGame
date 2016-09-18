@@ -5,6 +5,7 @@ public class Weapons : ScriptableObject {
 
 
     Sniper sniper;
+    GunScript gunScript;
 
     public void Start() {
 
@@ -14,12 +15,12 @@ public class Weapons : ScriptableObject {
 
         if (incomingSniper.name == "Sniper") {
             sniper = incomingSniper.GetComponent<Sniper>();
-            sniper.newMinFOV = 1;
-            sniper.bulletSpeedMultiplier = 16;
-        }else if (incomingSniper.name == "Sniper2") {
-            sniper = incomingSniper.GetComponent<Sniper>();
-            sniper.newMinFOV = 16;
-            sniper.bulletSpeedMultiplier = 3;
+            sniper.newMinFOV = 20;
+            sniper.bulletSpeedMultiplier = 5;
+        }else if (incomingSniper.name == "Sniper4") {
+            gunScript = incomingSniper.GetComponent<GunScript>();
+            gunScript.newMinFOV = 1;
+            gunScript.bulletSpeedMultiplier = 16;
         }
     }
 	

@@ -111,6 +111,7 @@
     <Compile Include="Assets\Scripts\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\ScoreManage.cs" />
     <Compile Include="Assets\Scripts\Sniper.cs" />
+    <Compile Include="Assets\Scripts\Sniper\ClipSniper.cs" />
     <Compile Include="Assets\Scripts\SniperSounds.cs" />
     <Compile Include="Assets\Scripts\Testing\basicAI.cs" />
     <Compile Include="Assets\Scripts\Weapons.cs" />

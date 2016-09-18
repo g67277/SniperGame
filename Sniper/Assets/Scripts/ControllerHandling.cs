@@ -56,10 +56,9 @@ public class ControllerHandling : MonoBehaviour {
                 sniper.controller = controller;
                 weapons.setupWeapon(pickedUpObject);
         } else if (pickedUpObject.name == "Sniper4") {
-            Debug.Log("inside sniper 4 collider");
             gscript.isPickedUp = true;
             gscript.controller = controller;
-            //weapons.setupWeapon(pickedUpObject);
+            weapons.setupWeapon(pickedUpObject);
         }
         canPickup = false;
         
@@ -69,10 +68,14 @@ public class ControllerHandling : MonoBehaviour {
         
         var device = SteamVR_Controller.Input((int)controller.index);
         if (device != null) {
-            if (collider.gameObject.tag == "Pickable" || collider.gameObject.tag == "Magazine") {
+            Debug.Log("Testing: " + collider.gameObject.tag);
+
+            if (collider.gameObject.tag == "Pickable" || collider.gameObject.tag == "Magazine" || collider.gameObject.tag == "Scope") {
+                Debug.Log("Testing2: " + collider.gameObject.tag);
                 pickedUpObject = collider.gameObject;
+                canPickup = true;
             }
-            canPickup = true;
+            
         }
     }
 

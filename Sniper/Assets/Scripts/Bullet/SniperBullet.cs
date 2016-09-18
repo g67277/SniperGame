@@ -71,45 +71,21 @@ public class SniperBullet : MonoBehaviour {
             } else if (hit.collider.CompareTag("Civilian")) {
                 CivilianHit(hit.collider.gameObject);
             }else if (hit.transform.tag == metalImpactStaticTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(metalImpactStaticPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                (Instantiate(metalImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
             }else if (hit.transform.tag == metalImpactTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(metalImpactPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                Instantiate(metalImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
             }else if (hit.transform.tag == woodImpactStaticTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(woodImpactStaticPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
-            }else if (hit.transform.tag == woodImpactTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(woodImpactPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
-            }else if (hit.transform.tag == concreteImpactStaticTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(concreteImpactStaticPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                (Instantiate(woodImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
+            } else if (hit.transform.tag == woodImpactTag) {
+                Instantiate(woodImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+            } else if (hit.transform.tag == concreteImpactStaticTag) {
+                (Instantiate(concreteImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
             }else if (hit.transform.tag == concreteImpactTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(concreteImpactPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                Instantiate(concreteImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
             }else if (hit.transform.tag == dirtImpactStaticTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(dirtImpactStaticPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                (Instantiate(dirtImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
             }else if (hit.transform.tag == dirtImpactTag) {
-
-                //Spawn bullet impact on surface
-                Instantiate(dirtImpactPrefab, hit.point,
-                        Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                Instantiate(dirtImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
             }
         }
     }

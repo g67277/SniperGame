@@ -6,6 +6,15 @@ public class GunScript : MonoBehaviour	{
     public SteamVR_TrackedObject controller;
     public bool isPickedUp = false;
 
+    // Scope Variables
+    public bool isThereScope = false;
+    public Camera scopeCamera;
+    public float newMinFOV = 1f;
+    public float newMaxFOV = 66f;
+
+    //Setup different weapon strengths
+    public float bulletSpeedMultiplier = 1;
+
     [Header("Bullets Left")]
 	//How many bullets there are left
 	public int bulletsLeft;
@@ -38,10 +47,6 @@ public class GunScript : MonoBehaviour	{
 	[Range(5f, 50f)]
 	public float
 		lightRange = 10.0f;
-
-	public float bulletDistance = 150f;
-	public float bulletForce = 15f;
-
 
 	//All weapon types
 	[System.Serializable]
@@ -151,10 +156,6 @@ public class GunScript : MonoBehaviour	{
 		public AudioSource outOfAmmoClickSound;
 
 	}
-
-	bool spinUpSoundHasPlayed = false;
-	bool spinDownSoundHasPlayed = false;
-	bool spinLoopHasPlayed = false;
 
 	public audioSources AudioSources;
 
@@ -338,7 +339,7 @@ public class GunScript : MonoBehaviour	{
         //Disable raycast bullet for rpg and grenade launcher, since they dont use it
         GameObject go = Instantiate(BulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.transform.rotation) as GameObject;
         //Add velocity to the non-physics bullet
-        go.GetComponent<SniperBullet>().currentVelocity = (Ballistics.bulletSpeed * 2) * bulletSpawnPoint.transform.forward;
+        go.GetComponent<SniperBullet>().currentVelocity = (Ballistics.bulletSpeed * bulletSpeedMultiplier) * bulletSpawnPoint.transform.forward;
 
 
         //Chooses a random muzzleflash from the array
@@ -467,8 +468,11 @@ public class GunScript : MonoBehaviour	{
 
             var device = SteamVR_Controller.Input((int)controller.index);
 
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && !isReloading) {
-                dropMagazine();
+            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !isReloading) {
+                float touchX = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x;
+                if (touchX > 0.5) {
+                    dropMagazine();
+                }
             }
 
             if (WeaponType.sniper == true || WeaponType.sniperSilencer == true) {
@@ -476,6 +480,7 @@ public class GunScript : MonoBehaviour	{
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
                     //Muzzleflash
+                    device.TriggerHapticPulse(2000);
                     StartCoroutine(Muzzleflash());
                     StartCoroutine(PumpOrBoltActionReload());
 
@@ -532,6 +537,36 @@ public class GunScript : MonoBehaviour	{
             //If out of ammo
             if (bulletsLeft == 0) {
                 outOfAmmo = true;
+            }
+
+            if (isThereScope) {
+                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+                    float touchY = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y;
+                    Debug.Log("What is touchY: " + touchY);
+                    if (touchY > 0.5) {
+                        float fov;
+                        if (scopeCamera.fieldOfView < 7) {
+                            fov = scopeCamera.fieldOfView - 1f;
+                        } else {
+                            fov = scopeCamera.fieldOfView - 10f;
+                        }
+                        if (fov >= newMinFOV) {
+                            scopeCamera.fieldOfView = fov;
+                        }
+                    } else if (touchY < -0.5) {
+                        float fov;
+                        if (scopeCamera.fieldOfView < 6) {
+                            fov = scopeCamera.fieldOfView + 1f;
+                        } else {
+                            fov = scopeCamera.fieldOfView + 10f;
+                        }
+
+                        if (fov <= newMaxFOV) {
+                            scopeCamera.fieldOfView = fov;
+                        }
+
+                    }
+                }
             }
 
             if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && outOfAmmo && !isReloading) {

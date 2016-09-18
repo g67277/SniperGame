@@ -41,7 +41,8 @@ public class Sniper : MonoBehaviour {
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
 
                 float touchY = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y;
-                if (touchY > 0) {
+                Debug.Log("What is touchY: " + touchY);
+                if (touchY > 0.5) {
                     float fov;
                     if (scopeCamera.fieldOfView < 7) {
                         fov = scopeCamera.fieldOfView - 1f;
@@ -51,7 +52,7 @@ public class Sniper : MonoBehaviour {
                     if (fov >= newMinFOV) {
                         scopeCamera.fieldOfView = fov;
                     }
-                }else if (touchY < 0) {
+                }else if (touchY < -0.5) {
                     float fov;
                     if (scopeCamera.fieldOfView < 6) {
                         fov = scopeCamera.fieldOfView + 1f;
