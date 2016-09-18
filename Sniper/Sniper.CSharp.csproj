@@ -69,15 +69,51 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Arms\Arms.cs" />
-    <Compile Include="Assets\Arms\InteractableItem.cs" />
-    <Compile Include="Assets\Arms\WandController.cs" />
-    <Compile Include="Assets\For Sure fiiles\ControllerHandling.cs" />
-    <Compile Include="Assets\For Sure fiiles\PersonAnimator.cs" />
-    <Compile Include="Assets\For Sure fiiles\SniperSounds.cs" />
-    <Compile Include="Assets\Prefabs\Testing.cs" />
-    <Compile Include="Assets\RandomAgent.cs" />
-    <Compile Include="Assets\Sniper.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Demo Scene\Scripts\AimScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Demo Scene\Scripts\DebrisScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Demo Scene\Scripts\ExplosiveBarrelScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Demo Scene\Scripts\GasTankScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Demo Scene\Scripts\TargetScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Casings &amp; Mags\CasingScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Casings &amp; Mags\GrenadeScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Casings &amp; Mags\MagazineScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Casings &amp; Mags\ProjectileScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Explosion &amp; Impact\ExplosionScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Explosion &amp; Impact\ImpactScript.cs" />
+    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\GunScript.cs" />
+    <Compile Include="Assets\Lowpoly_Landscapes\Scenes\DemoCamera.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\PedestrianNode.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\PedestrianObject.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\PedestrianObjectSpawner.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\PedestrianSystem.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\PedestrianVehicleCheckTrigger.cs" />
+    <Compile Include="Assets\Pedestrian System\Scripts\ToolTip.cs" />
+    <Compile Include="Assets\Scripts\Bullet\Ballistics.cs" />
+    <Compile Include="Assets\Scripts\Bullet\BulletPhysics.cs" />
+    <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
+    <Compile Include="Assets\Scripts\Bullet\SniperBullet.cs" />
+    <Compile Include="Assets\Scripts\ControllerHandling.cs" />
+    <Compile Include="Assets\Scripts\Counting\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Movements.cs" />
+    <Compile Include="Assets\Scripts\Movements\Utilities.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_BasicTeleport.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_ControllerEvents.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_DestinationMarker.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_DeviceFinder.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_HeadsetCollision.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_ObjectCache.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_PlayerObject.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_SDK_Bridge.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_TagOrScriptPolicyList.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_TouchpadWalking.cs" />
+    <Compile Include="Assets\Scripts\Movements\VRTK_UIGraphicRaycaster.cs" />
+    <Compile Include="Assets\Scripts\PersonAnimator.cs" />
+    <Compile Include="Assets\Scripts\RandomMovement.cs" />
+    <Compile Include="Assets\Scripts\ScoreManage.cs" />
+    <Compile Include="Assets\Scripts\Sniper.cs" />
+    <Compile Include="Assets\Scripts\SniperSounds.cs" />
+    <Compile Include="Assets\Scripts\Testing\basicAI.cs" />
+    <Compile Include="Assets\Scripts\Weapons.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -112,21 +148,16 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
-    <Compile Include="Assets\TestingBullet\BulletPhysics.cs" />
-    <Compile Include="Assets\TestingBullet\IntegrationMethods.cs" />
-    <Compile Include="Assets\TestingBullet\TutorialBallistics.cs" />
-    <Compile Include="Assets\TestingBullet\TutorialBullet.cs" />
-    <Compile Include="Assets\TestingBullet\TutorialFireBullets.cs" />
-    <Compile Include="Assets\airplane.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Movinarc\PackageUninstaller\README.txt" />
-    <None Include="Assets\SimpleSky\ReadMe.txt" />
-    <None Include="Assets\SimpleWorld\SimpleCitizens\Changelog.txt" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\Changelog.txt" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\Materials\UnlitVertexColour_Alpha.shader" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\ReadMe.txt" />
-    <None Include="Assets\SimpleWorld\SimpleTown\Changelog.txt" />
+    <None Include="Assets\Packages\Movinarc\PackageUninstaller\README.txt" />
+    <None Include="Assets\Packages\SimpleSky\ReadMe.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleCitizens\Changelog.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\Changelog.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\Materials\UnlitVertexColour_Alpha.shader" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\ReadMe.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleTown\Changelog.txt" />
+    <None Include="Assets\Pedestrian System\Docs\Instructions.txt" />
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Blit.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />
@@ -137,9 +168,6 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Overlay.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
-    <None Include="Assets\skyscrapers\shaders\building.shader" />
-    <None Include="Assets\skyscrapers\shaders\fogplane.shader" />
-    <None Include="Assets\skyscrapers\shaders\specillumShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

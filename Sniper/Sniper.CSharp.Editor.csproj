@@ -89,10 +89,7 @@
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="SharpCompress.3.5">
-      <HintPath>Assets\Movinarc\PackageUninstaller\Editor\SharpCompress.3.5.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-UnityScript">
-      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+      <HintPath>Assets\Packages\Movinarc\PackageUninstaller\Editor\SharpCompress.3.5.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +103,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Movinarc\PackageUninstaller\Editor\PUManager.cs" />
-    <Compile Include="Assets\Movinarc\PackageUninstaller\Editor\PUSelection.cs" />
-    <Compile Include="Assets\Movinarc\PackageUninstaller\Editor\TreeNode.cs" />
+    <Compile Include="Assets\Packages\Movinarc\PackageUninstaller\Editor\PUManager.cs" />
+    <Compile Include="Assets\Packages\Movinarc\PackageUninstaller\Editor\PUSelection.cs" />
+    <Compile Include="Assets\Packages\Movinarc\PackageUninstaller\Editor\TreeNode.cs" />
+    <Compile Include="Assets\Pedestrian System\Editor\PedestrianNodeEditor.cs" />
+    <Compile Include="Assets\Pedestrian System\Editor\PedestrianObjectEditor.cs" />
+    <Compile Include="Assets\Pedestrian System\Editor\PedestrianSystemEditor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Editor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Settings.cs" />
@@ -116,13 +116,14 @@
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Update.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Movinarc\PackageUninstaller\README.txt" />
-    <None Include="Assets\SimpleSky\ReadMe.txt" />
-    <None Include="Assets\SimpleWorld\SimpleCitizens\Changelog.txt" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\Changelog.txt" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\Materials\UnlitVertexColour_Alpha.shader" />
-    <None Include="Assets\SimpleWorld\SimpleMilitary\ReadMe.txt" />
-    <None Include="Assets\SimpleWorld\SimpleTown\Changelog.txt" />
+    <None Include="Assets\Packages\Movinarc\PackageUninstaller\README.txt" />
+    <None Include="Assets\Packages\SimpleSky\ReadMe.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleCitizens\Changelog.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\Changelog.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\Materials\UnlitVertexColour_Alpha.shader" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\ReadMe.txt" />
+    <None Include="Assets\Packages\SimpleWorld\SimpleTown\Changelog.txt" />
+    <None Include="Assets\Pedestrian System\Docs\Instructions.txt" />
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Blit.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />
@@ -133,9 +134,6 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Overlay.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
-    <None Include="Assets\skyscrapers\shaders\building.shader" />
-    <None Include="Assets\skyscrapers\shaders\fogplane.shader" />
-    <None Include="Assets\skyscrapers\shaders\specillumShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
