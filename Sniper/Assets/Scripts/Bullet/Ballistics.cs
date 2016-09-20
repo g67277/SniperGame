@@ -40,7 +40,7 @@ public class Ballistics : MonoBehaviour {
 
         //Horizontal distance
         float x = targetVec.magnitude;
-
+        Debug.Log("is this the distance?: " + x);
         //Gravity
         float g = 9.81f;
 

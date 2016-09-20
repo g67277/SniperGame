@@ -75,7 +75,12 @@ public class SniperBullet : MonoBehaviour {
             }else if (hit.transform.tag == metalImpactTag) {
                 Instantiate(metalImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
             }else if (hit.transform.tag == woodImpactStaticTag) {
+                float distance = Vector3.Distance(hit.point, hit.collider.bounds.center);
+                string part = hit.collider.name;
+                hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>().calculateHit(distance, part);
+                Debug.Log("Hit point: " + hit.point + "Collider center: " + hit.collider.bounds.center + "The distance is: " + Vector3.Distance(hit.point, hit.collider.bounds.center));
                 (Instantiate(woodImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
+                Destroy(gameObject);
             } else if (hit.transform.tag == woodImpactTag) {
                 Instantiate(woodImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
             } else if (hit.transform.tag == concreteImpactStaticTag) {
