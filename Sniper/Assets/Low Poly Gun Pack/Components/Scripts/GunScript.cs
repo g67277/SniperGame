@@ -220,9 +220,7 @@ public class GunScript : MonoBehaviour	{
 
 		//If sniper 6 is true
 		if (WeaponType.sniper6 == true) {
-			//Play the slider open animation
-			Components.ejectSlider.GetComponent<Animation> ().Play 
-				(Animations.reloadSlideOpenAnim);
+			
 			//Play reload animation
 			Components.holder.GetComponent<Animation> ().Play
 				(Animations.reloadAnim);
@@ -231,18 +229,7 @@ public class GunScript : MonoBehaviour	{
 			AudioSources.mainReloadSound.Play ();
 			//Play slider sound
 			AudioSources.sliderSound.Play ();
-			//Play remove mag sound
-			AudioSources.removeMagSound.Play();
 
-			//Wait some time
-			yield return new WaitForSeconds(0.12f);
-			//Spawn the empty mag prefab
-			Instantiate (emptyMagPrefab, magSpawnPoint.transform.position, 
-			             magSpawnPoint.transform.rotation);
-
-			//Play the full mag in animation
-			Components.fullMag.GetComponent<Animation> ().Play
-				(Animations.fullMagInAnim);
 		}
 		
 		//Refill bullets
@@ -448,12 +435,19 @@ public class GunScript : MonoBehaviour	{
             Components.mag.GetComponent<MeshRenderer>().enabled = false;
             //Play remove mag sound
             AudioSources.removeMagSound.Play();
+        }else if (WeaponType.sniper6 == true) {
+            //Spawn the empty mag prefab
+            Instantiate(emptyMagPrefab, magSpawnPoint.transform.position, magSpawnPoint.transform.rotation);
+            //Play the slider open animation
+            Components.ejectSlider.GetComponent<Animation>().Play(Animations.reloadSlideOpenAnim);
+            //Play remove mag sound
+            AudioSources.removeMagSound.Play();
         }
     }
 
     void OnTriggerEnter(Collider col) {
 
-        if (WeaponType.sniper3 == true && col.gameObject.tag == "Magazine" && isReloading) {
+        if (col.gameObject.tag == "Magazine" && isReloading) {
             Destroy(col.gameObject);
             StartCoroutine(Reload());
         }
@@ -502,10 +496,11 @@ public class GunScript : MonoBehaviour	{
             //If sniper 3 or sniper 6 is true
             if (WeaponType.sniper3 == true || WeaponType.sniper6 == true) {
                 //Shoot when left click is pressed
-
+                
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
                     //Muzzleflash
+                    device.TriggerHapticPulse(2000);
                     StartCoroutine(Muzzleflash());
 
                     //Play recoil animation

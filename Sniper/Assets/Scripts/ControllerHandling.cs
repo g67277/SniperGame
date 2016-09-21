@@ -37,31 +37,31 @@ public class ControllerHandling : MonoBehaviour {
     }
 
     void objectPickup() {
-       
-            this.gameObject.transform.Find("hand").gameObject.SetActive(false);
-            // Add the sniper to the parent controller
-            pickedUpObject.transform.parent = controller.transform;
 
-            // Pass the controller instance to the sniper
-            sniper = pickedUpObject.GetComponent<Sniper>();
+        this.gameObject.transform.Find("hand").gameObject.SetActive(false);
+        // Add the sniper to the parent controller
+        pickedUpObject.transform.parent = controller.transform;
+
+        // Pass the controller instance to the sniper
+        sniper = pickedUpObject.GetComponent<Sniper>();
         gscript = pickedUpObject.GetComponent<GunScript>();
-            // Manages the different characteristics of the weapons
-            weapons = ScriptableObject.CreateInstance("Weapons") as Weapons;
-            if (pickedUpObject.name == "Sniper") {
-                sniper.isPickedUp = true;
-                sniper.controller = controller;
-                weapons.setupWeapon(pickedUpObject.gameObject); // Maybe only have one ** move to bottom
-            } else if (pickedUpObject.name == "Sniper2") {
-                sniper.isPickedUp = true;
-                sniper.controller = controller;
-                weapons.setupWeapon(pickedUpObject);
-        } else if (pickedUpObject.name == "Sniper4") {
+        // Manages the different characteristics of the weapons
+        weapons = ScriptableObject.CreateInstance("Weapons") as Weapons;
+        if (pickedUpObject.name == "Sniper4") {
+            gscript.isPickedUp = true;
+            gscript.controller = controller;
+            weapons.setupWeapon(pickedUpObject);
+        } else if (pickedUpObject.name == "Sniper2") {
+            sniper.isPickedUp = true;
+            sniper.controller = controller;
+            weapons.setupWeapon(pickedUpObject);
+        } else if (pickedUpObject.name == "Sniper6") {
             gscript.isPickedUp = true;
             gscript.controller = controller;
             weapons.setupWeapon(pickedUpObject);
         }
         canPickup = false;
-        
+
     }
 
     void OnTriggerEnter(Collider collider) {
