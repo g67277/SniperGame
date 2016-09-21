@@ -149,6 +149,12 @@
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_TrackedObject.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_UpdatePoses.cs" />
     <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\BorderRenderer.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\ParabolicPointer.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\TeleportTest.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\TeleportVive.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\ViveNavMesh.cs" />
+    <Compile Include="Assets\Vive-Teleporter\Scripts\ViveNavMeshEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Packages\Movinarc\PackageUninstaller\README.txt" />
@@ -169,6 +175,11 @@
     <None Include="Assets\SteamVR\Resources\SteamVR_Overlay.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
     <None Include="Assets\SteamVR\readme.txt" />
+    <None Include="Assets\Vive-Teleporter\LICENCE.txt" />
+    <None Include="Assets\Vive-Teleporter\README.txt" />
+    <None Include="Assets\Vive-Teleporter\Shader\FadeBlack.shader" />
+    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementBorder.shader" />
+    <None Include="Assets\Vive-Teleporter\Shader\ViveMovementGrid.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
