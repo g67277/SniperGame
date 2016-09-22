@@ -13,14 +13,14 @@ public class Weapons : ScriptableObject {
 
     public void setupWeapon(GameObject incomingSniper) {
 
-        if (incomingSniper.name == "Sniper") {
-            sniper = incomingSniper.GetComponent<Sniper>();
-            sniper.newMinFOV = 20;
-            sniper.bulletSpeedMultiplier = 5;
-        }else if (incomingSniper.name == "Sniper4") {
+        if (incomingSniper.name == "Sniper2") {
+            gunScript = incomingSniper.GetComponent<GunScript>();
+            gunScript.newMinFOV = 6;
+            gunScript.bulletSpeedMultiplier = 6;
+        } else if (incomingSniper.name == "Sniper4") {
             gunScript = incomingSniper.GetComponent<GunScript>();
             gunScript.newMinFOV = 1;
-            gunScript.bulletSpeedMultiplier = 16;
+            gunScript.bulletSpeedMultiplier = 10;
         } else if (incomingSniper.name == "Sniper6") {
             gunScript = incomingSniper.GetComponent<GunScript>();
             gunScript.bulletSpeedMultiplier = 3;

@@ -209,13 +209,10 @@ public class GunScript : MonoBehaviour	{
 			//Play main reload sound
 			AudioSources.mainReloadSound.Play();
 
-			//Play bullet reload animation 5 times
-			for (int count = 1; count <= 5; count++) {
-				Components.bullet.GetComponent<Animation> ().PlayQueued
-					(Animations.bulletInAnim);
+            Components.bullet.GetComponent<Animation>().PlayQueued
+                    (Animations.bulletInAnim);
 
-				StartCoroutine(ShellInsertSound (5));
-			}
+            StartCoroutine(ShellInsertSound(1));
 		}
 
 		//If sniper 6 is true
@@ -262,7 +259,6 @@ public class GunScript : MonoBehaviour	{
 			
 			//Enable shooting again
 			outOfAmmo = false;
-			isReloading = false;
 		}
 
 		//If sniper3 is true
@@ -447,8 +443,17 @@ public class GunScript : MonoBehaviour	{
 
     void OnTriggerEnter(Collider col) {
 
-        if (col.gameObject.tag == "Magazine" && isReloading) {
+        if (WeaponType.sniper == true && col.gameObject.tag == "Magazine" && isReloading) {
             Destroy(col.gameObject);
+            isReloading = false;
+            StartCoroutine(Reload());
+        }else if (WeaponType.sniper3 == true && col.gameObject.tag == "Magazine2" && isReloading) {
+            Destroy(col.gameObject);
+            isReloading = false;
+            StartCoroutine(Reload());
+        } else if (WeaponType.sniper6 == true && col.gameObject.tag == "Magazine3" && isReloading) {
+            Destroy(col.gameObject);
+            isReloading = false;
             StartCoroutine(Reload());
         }
     }
@@ -465,7 +470,7 @@ public class GunScript : MonoBehaviour	{
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !isReloading) {
                 float touchX = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x;
                 if (touchX > 0.5) {
-                    dropMagazine();
+                        dropMagazine();
                 }
             }
 
@@ -532,9 +537,12 @@ public class GunScript : MonoBehaviour	{
             //If out of ammo
             if (bulletsLeft == 0) {
                 outOfAmmo = true;
+                if (WeaponType.sniper == true) {
+                    isReloading = true;
+                }
             }
 
-            if (isThereScope) {
+            if (isThereScope || WeaponType.sniper == true) {
                 if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
                     float touchY = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y;
                     Debug.Log("What is touchY: " + touchY);

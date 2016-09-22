@@ -47,19 +47,11 @@ public class ControllerHandling : MonoBehaviour {
         gscript = pickedUpObject.GetComponent<GunScript>();
         // Manages the different characteristics of the weapons
         weapons = ScriptableObject.CreateInstance("Weapons") as Weapons;
-        if (pickedUpObject.name == "Sniper4") {
+        if (pickedUpObject.name == "Sniper4" || pickedUpObject.name == "Sniper2" || pickedUpObject.name == "Sniper6") {
             gscript.isPickedUp = true;
             gscript.controller = controller;
             weapons.setupWeapon(pickedUpObject);
-        } else if (pickedUpObject.name == "Sniper2") {
-            sniper.isPickedUp = true;
-            sniper.controller = controller;
-            weapons.setupWeapon(pickedUpObject);
-        } else if (pickedUpObject.name == "Sniper6") {
-            gscript.isPickedUp = true;
-            gscript.controller = controller;
-            weapons.setupWeapon(pickedUpObject);
-        }
+        } 
         canPickup = false;
 
     }
@@ -71,7 +63,6 @@ public class ControllerHandling : MonoBehaviour {
             Debug.Log("Testing: " + collider.gameObject.tag);
 
             if (collider.gameObject.tag == "Pickable" || collider.gameObject.tag == "Magazine" || collider.gameObject.tag == "Scope") {
-                Debug.Log("Testing2: " + collider.gameObject.tag);
                 pickedUpObject = collider.gameObject;
                 canPickup = true;
             }
