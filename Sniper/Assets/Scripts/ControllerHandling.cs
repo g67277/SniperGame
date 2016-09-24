@@ -10,6 +10,9 @@ public class ControllerHandling : MonoBehaviour {
     Sniper sniper;
     Weapons weapons;
 
+    Vector3 lastObjectPosition;
+    Quaternion lastObjectRotation;   
+
     //test
     GunScript gscript;
 
@@ -21,24 +24,28 @@ public class ControllerHandling : MonoBehaviour {
             this.gameObject.transform.Find("hand").gameObject.SetActive(true);
         }
 
-        if (canPickup) {
-            var device = SteamVR_Controller.Input((int)controller.index);
-            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip)) {
-                if (controller.transform.childCount > 2) {
-                    this.gameObject.transform.GetChild(2).transform.position = pickedUpObject.transform.position;
-                    this.gameObject.transform.GetChild(2).transform.rotation = pickedUpObject.transform.rotation;
-                    this.gameObject.transform.GetChild(2).transform.parent = null;
-                    objectPickup();
-                } else {
-                    objectPickup();
-                }
+
+        var device = SteamVR_Controller.Input((int)controller.index);
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip)) {
+            if (controller.transform.childCount > 2) {
+                this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
+                this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
+                this.gameObject.transform.GetChild(2).transform.parent = null;
+            } else if (canPickup) {
+                objectPickup();
             }
         }
+
     }
 
     void objectPickup() {
 
         this.gameObject.transform.Find("hand").gameObject.SetActive(false);
+
+        // Save object's current positions before picking it up
+        lastObjectPosition = pickedUpObject.transform.position;
+        lastObjectRotation = pickedUpObject.transform.rotation;
+
         // Add the sniper to the parent controller
         pickedUpObject.transform.parent = controller.transform;
 
@@ -60,9 +67,10 @@ public class ControllerHandling : MonoBehaviour {
         
         var device = SteamVR_Controller.Input((int)controller.index);
         if (device != null) {
-            Debug.Log("Testing: " + collider.gameObject.tag);
 
-            if (collider.gameObject.tag == "Pickable" || collider.gameObject.tag == "Magazine" || collider.gameObject.tag == "Scope") {
+            if (collider.gameObject.tag == "Pickable" || collider.gameObject.tag == "Magazine" 
+                || collider.gameObject.tag == "Magazine2" || collider.gameObject.tag == "Magazine3" 
+                || collider.gameObject.tag == "Scope" && controller.transform.childCount < 3) {
                 pickedUpObject = collider.gameObject;
                 canPickup = true;
             }

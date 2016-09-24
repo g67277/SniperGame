@@ -11,15 +11,18 @@ public class PersonAnimator : MonoBehaviour {
         animator.Stop();
     }
 
-    public void hitResult(string name) {
+    public void hitResult(string name, string tag) {
         animator = GetComponent<Animator>();
         Debug.Log("*****Animator class hit string:" + name);
+        Debug.Log("*****Animator class hit tag:" + tag);
         if (name == "Head_jnt" || name == "Spine_jnt") {
             animator.Stop();
             
             ScoreManager.score += scoreValue;
             gameObject.GetComponent<PedestrianObject>().enabled = false;
             //OnAIDeath();
+        } else if(tag == "MiniTarget"){
+            animator.Play("Death_02", -1, 0f);
         } else {
             animator.Play("Run", -1, 0f);
         }

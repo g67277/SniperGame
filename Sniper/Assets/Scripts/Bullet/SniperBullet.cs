@@ -60,7 +60,7 @@ public class SniperBullet : MonoBehaviour {
         RaycastHit hit;
 
         if (Physics.Raycast(currentPosition, fireDirection, out hit, fireDistance)) {
-            if (hit.collider.CompareTag("Target")) {
+            if (hit.collider.CompareTag("Target")  || hit.collider.CompareTag("MiniTarget")) {
                 TargetHit(hit.collider.gameObject);
             }else if (hit.collider.CompareTag("Navigation")) {
                 NavHit();
@@ -80,8 +80,9 @@ public class SniperBullet : MonoBehaviour {
             }else if (hit.transform.tag == woodImpactStaticTag) {
                 float distance = Vector3.Distance(hit.point, hit.collider.bounds.center);
                 string part = hit.collider.name;
-                hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>().calculateHit(distance, part);
-                Debug.Log("Hit point: " + hit.point + "Collider center: " + hit.collider.bounds.center + "The distance is: " + Vector3.Distance(hit.point, hit.collider.bounds.center));
+                if (hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>() != null) {
+                    hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>().calculateHit(distance, part);
+                }
                 (Instantiate(woodImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
                 Destroy(gameObject);
             } else if (hit.transform.tag == woodImpactTag) {
@@ -99,11 +100,10 @@ public class SniperBullet : MonoBehaviour {
     }
 
     void TargetHit(GameObject target) {
-        Debug.Log("Hit target!");
         pAnimator = target.transform.root.gameObject.GetComponent<PersonAnimator>();
 
         Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
-        pAnimator.hitResult(target.name);
+        pAnimator.hitResult(target.name, target.tag);
         target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
         Destroy(gameObject);
     }

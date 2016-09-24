@@ -545,7 +545,6 @@ public class GunScript : MonoBehaviour	{
             if (isThereScope || WeaponType.sniper == true) {
                 if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
                     float touchY = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y;
-                    Debug.Log("What is touchY: " + touchY);
                     if (touchY > 0.5) {
                         float fov;
                         if (scopeCamera.fieldOfView < 7) {

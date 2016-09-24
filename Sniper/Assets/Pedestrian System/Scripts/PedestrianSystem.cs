@@ -85,7 +85,6 @@ public class PedestrianSystem : MonoBehaviour
 		if(m_randomObjectSpawnPerNode && Application.isPlaying)
 		{
 			PedestrianNode[] nodes = GameObject.FindObjectsOfType<PedestrianNode>();
-            Debug.Log("node name: " + nodes[0].tag);
             int character1 = 0;
             int character2 = 0;
             int character3 = 0;
@@ -95,10 +94,8 @@ public class PedestrianSystem : MonoBehaviour
 				while(perNodeCount < m_numOfObjectsSpawnedPerNode)
 				{
 					float rand = Random.Range(0.0f, 1.0f);
-                    Debug.Log("index number: " + perNodeCount);
                     if (rand <= m_randomObjectSpawnChancePerNode && CanSpawn())
 					{
-                      Debug.Log("Node Tag: " + nodes[rIndex].tag);
                         if (nodes[rIndex].tag == "System2" && character2 < character2Count) {
                             PedestrianObject obj = Instantiate(m_objectPrefabs[1], transform.position, transform.rotation) as PedestrianObject;
                             obj.Spawn(nodes[rIndex].transform.position, nodes[rIndex]);
