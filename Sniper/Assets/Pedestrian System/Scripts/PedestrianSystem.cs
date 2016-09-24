@@ -34,13 +34,16 @@ public class PedestrianSystem : MonoBehaviour
 	public        GameObject                TooltipAnchor    { get; set; }
 	public        GameObject                TooltipEdit      { get; set; }
 
-	public  int                             m_objectSpawnCountMax      = -1;   // if -1 then unlimited objects can spawn. If higher than only this amount will ever spawn using the Traffic System spawn options
+	private  int                             m_objectSpawnCountMax      = -1;   // if -1 then unlimited objects can spawn. If higher than only this amount will ever spawn using the Traffic System spawn options
 	public  bool                            m_randomObjectSpawnPerNode  = false; 
 	[Range(0, 1)]
 	public  float                           m_randomObjectSpawnChancePerNode = 0.0f;
 	public  int                             m_numOfObjectsSpawnedPerNode     = 1;
+    public int character1Count = 0;
+    public int character2Count = 0;
+    public int character3Count = 0;
 
-	private       List<Transform>           CLRevealObjectsFrom       = new List<Transform>();
+    private       List<Transform>           CLRevealObjectsFrom       = new List<Transform>();
 	private       List<Transform>           CLRevealObjectsTo         = new List<Transform>();
 
 	public  List<PedestrianObject>          m_objectPrefabs      = new List<PedestrianObject>();
@@ -74,24 +77,38 @@ public class PedestrianSystem : MonoBehaviour
 
 	void Start()
 	{
-		if(Instance != this)
+        m_objectSpawnCountMax = character1Count + character2Count + character3Count;
+
+        if (Instance != this)
 			return;
 
 		if(m_randomObjectSpawnPerNode && Application.isPlaying)
 		{
 			PedestrianNode[] nodes = GameObject.FindObjectsOfType<PedestrianNode>();
-			
+            Debug.Log("node name: " + nodes[0].tag);
+            int character1 = 0;
+            int character2 = 0;
+            int character3 = 0;
 			for(int rIndex = 0; rIndex < nodes.Length; rIndex++)
 			{
 				int perNodeCount = 0;
 				while(perNodeCount < m_numOfObjectsSpawnedPerNode)
 				{
 					float rand = Random.Range(0.0f, 1.0f);
-					if(rand <= m_randomObjectSpawnChancePerNode && CanSpawn())
+                    Debug.Log("index number: " + perNodeCount);
+                    if (rand <= m_randomObjectSpawnChancePerNode && CanSpawn())
 					{
-						int randObjectIndex    = Random.Range(0, m_objectPrefabs.Count);
-						PedestrianObject obj   = Instantiate( m_objectPrefabs[randObjectIndex], transform.position, transform.rotation ) as PedestrianObject;
-						obj.Spawn( nodes[rIndex].transform.position, nodes[rIndex] );
+                      Debug.Log("Node Tag: " + nodes[rIndex].tag);
+                        if (nodes[rIndex].tag == "System2" && character2 < character2Count) {
+                            PedestrianObject obj = Instantiate(m_objectPrefabs[1], transform.position, transform.rotation) as PedestrianObject;
+                            obj.Spawn(nodes[rIndex].transform.position, nodes[rIndex]);
+                            character2++;
+                        }else if (nodes[rIndex].tag == "System1" && character1 < character1Count) {
+                            PedestrianObject obj = Instantiate(m_objectPrefabs[0], transform.position, transform.rotation) as PedestrianObject;
+                            obj.Spawn(nodes[rIndex].transform.position, nodes[rIndex]);
+                            character1++;
+                        }
+						
 					}
 
 					perNodeCount++;
@@ -184,7 +201,7 @@ public class PedestrianSystem : MonoBehaviour
 	{
 		if(m_objectSpawnCountMax <= -1)
 			return true;
-		
+
 		if(m_spawnedObjects.Count < m_objectSpawnCountMax)
 			return true;
 		
@@ -264,7 +281,7 @@ public class PedestrianSystem : MonoBehaviour
 	
 	public void RegisterObjectSpawner( PedestrianObjectSpawner a_spawner )
 	{
-		m_objectSpawners.Add( a_spawner );
+        m_objectSpawners.Add( a_spawner );
 	}
 	
 	public void RespawnObject()

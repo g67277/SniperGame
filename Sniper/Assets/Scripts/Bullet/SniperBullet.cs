@@ -70,7 +70,10 @@ public class SniperBullet : MonoBehaviour {
                 BarrelHit(hit.collider.gameObject);
             } else if (hit.collider.CompareTag("Civilian")) {
                 CivilianHit(hit.collider.gameObject);
-            }else if (hit.transform.tag == metalImpactStaticTag) {
+            } else if (hit.collider.CompareTag("Bird")) {
+                hit.collider.gameObject.transform.root.gameObject.GetComponent<Bird>().hitBird(hit.collider.gameObject);
+                
+            } else if (hit.transform.tag == metalImpactStaticTag) {
                 (Instantiate(metalImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
             }else if (hit.transform.tag == metalImpactTag) {
                 Instantiate(metalImpactPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Pedestrian System\Scripts\PedestrianSystem.cs" />
     <Compile Include="Assets\Pedestrian System\Scripts\PedestrianVehicleCheckTrigger.cs" />
     <Compile Include="Assets\Pedestrian System\Scripts\ToolTip.cs" />
+    <Compile Include="Assets\Prefabs\Animals\Bird.cs" />
     <Compile Include="Assets\Scripts\Bullet\Ballistics.cs" />
     <Compile Include="Assets\Scripts\Bullet\BulletPhysics.cs" />
     <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
