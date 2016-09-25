@@ -124,6 +124,7 @@
     <None Include="Assets\Packages\SimpleWorld\SimpleMilitary\ReadMe.txt" />
     <None Include="Assets\Packages\SimpleWorld\SimpleTown\Changelog.txt" />
     <None Include="Assets\Pedestrian System\Docs\Instructions.txt" />
+    <None Include="Assets\Prefabs\Materials\Backface Bumped Diffuse.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Blit.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />

@@ -104,6 +104,9 @@ public class SniperBullet : MonoBehaviour {
 
         Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
         pAnimator.hitResult(target.name, target.tag);
+        if (target.tag == "MiniTarget") {
+            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().missionSelection(target.name);
+        }
         target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
         Destroy(gameObject);
     }
