@@ -96,7 +96,9 @@
     <Compile Include="Assets\Scripts\Bullet\SniperBullet.cs" />
     <Compile Include="Assets\Scripts\ControllerHandling.cs" />
     <Compile Include="Assets\Scripts\Counting\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\FadeObjectInOut.cs" />
     <Compile Include="Assets\Scripts\MissionManager.cs" />
+    <Compile Include="Assets\Scripts\MoveObjects.cs" />
     <Compile Include="Assets\Scripts\Movements.cs" />
     <Compile Include="Assets\Scripts\Movements\Utilities.cs" />
     <Compile Include="Assets\Scripts\Movements\VRTK_BasicTeleport.cs" />
