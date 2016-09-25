@@ -478,6 +478,10 @@ public class GunScript : MonoBehaviour	{
                 //Shoot when left click is pressed
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
+                    //Save bullet count
+                    int bullets = PlayerPrefs.GetInt("BulletsNum") + 1;
+                    PlayerPrefs.SetInt("BulletsNum", bullets);
+
                     //Muzzleflash
                     device.TriggerHapticPulse(2000);
                     StartCoroutine(Muzzleflash());
@@ -504,6 +508,10 @@ public class GunScript : MonoBehaviour	{
                 
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
+                    //Save bullet count
+                    int bullets = PlayerPrefs.GetInt("BulletsNum") + 1;
+                    PlayerPrefs.SetInt("BulletsNum", bullets);
+
                     //Muzzleflash
                     device.TriggerHapticPulse(2000);
                     StartCoroutine(Muzzleflash());

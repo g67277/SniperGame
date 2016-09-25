@@ -61,7 +61,6 @@ public class MissionManager : MonoBehaviour {
                 if (view.transform.localScale.x <= 5) {
                     view.transform.localScale = new Vector3(view.transform.localScale.x + 0.05f, view.transform.localScale.y + 0.05f, view.transform.localScale.z + 0.05f);
                     if (view.transform.localScale.x > 1.5f && view.transform.localScale.x < 1.8f) {
-                        Debug.Log("did this start " + view.transform.localScale.x);
                         gameObject.transform.root.transform.position = ExitPosition;
                     }
                 }else if (view.transform.localScale.x > 4.9f) {
@@ -72,7 +71,6 @@ public class MissionManager : MonoBehaviour {
                 if (view.transform.localScale.x >= 0.1f) {
                     view.transform.localScale = new Vector3(view.transform.localScale.x - 0.05f, view.transform.localScale.y - 0.05f, view.transform.localScale.z - 0.05f);
                     if (view.transform.localScale.x > 1.5f && view.transform.localScale.x < 1.8f) {
-                        Debug.Log("did this start " + view.transform.localScale.x);
                         gameObject.transform.root.transform.position = levelPosition;
                     }
                 }else {

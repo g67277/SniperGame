@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Targets\DummyTarget.cs" />
     <Compile Include="Assets\Scripts\Testing\basicAI.cs" />
     <Compile Include="Assets\Scripts\Weapons.cs" />
+    <Compile Include="Assets\Scripts\WindDisplay.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

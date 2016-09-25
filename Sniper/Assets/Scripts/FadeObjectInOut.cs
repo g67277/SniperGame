@@ -99,9 +99,6 @@ public class FadeObjectInOut : MonoBehaviour {
                 rendererObjects[i].enabled = false;
             }
         }
-
-
-        Debug.Log("fade sequence end : " + fadingOut);
         Destroy(gameObject);
     }
 

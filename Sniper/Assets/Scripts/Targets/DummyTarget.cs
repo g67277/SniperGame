@@ -16,11 +16,11 @@ public class DummyTarget : MonoBehaviour {
 
         if (distance >= 0.0 && distance < 0.1) {
             displayHitScore(200);
-        } else if (distance >= 0.1 && distance <= 0.14) {
+        } else if (distance >= 0.1 && distance <= 0.15) {
             displayHitScore(50);
-        } else if (distance >= 0.15 && distance <= 0.22) {
+        } else if (distance >= 0.15 && distance <= 0.23) {
             displayHitScore(15);
-        } else if (distance >= 0.23 && distance <= 0.31) {
+        } else if (distance >= 0.23 && distance <= 0.32) {
             displayHitScore(10);
         }
 
@@ -38,8 +38,14 @@ public class DummyTarget : MonoBehaviour {
 
         GameObject scoreDisplay2 = Instantiate(scoreDisplay, new Vector3(gameObject.transform.position.x + 0.1f, gameObject.transform.position.y + 3.3f, gameObject.transform.position.z - 0.8f), gameObject.transform.rotation) as GameObject;
         scoreDisplay2.GetComponent<TextMesh>().text = "+" + hitScore.ToString();
+        saveHit();
     }
 
+    void saveHit() {
+        //Save bullet count
+        int hits = PlayerPrefs.GetInt("HitsNum") + 1;
+        PlayerPrefs.SetInt("HitsNum", hits);
+    }
    
 
     // Update is called once per frame

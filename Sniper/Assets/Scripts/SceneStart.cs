@@ -7,4 +7,11 @@ public class SceneStart : MonoBehaviour {
 	void Start () {
         GameObject.Find("Camera (eye)").GetComponent<MissionManager>().deflateLogo();
     }
+
+    void Update() {
+
+        double accuracy = (double)PlayerPrefs.GetInt("HitsNum") / (double)PlayerPrefs.GetInt("BulletsNum");
+        PlayerPrefs.SetFloat("TotalAccuracy", (float)accuracy);
+        
+    }
 }

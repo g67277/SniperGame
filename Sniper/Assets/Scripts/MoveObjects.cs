@@ -49,25 +49,8 @@ public class MoveObjects : MonoBehaviour {
         // iterate to change position vector
         while (moveOnStart) {
             gameObject.transform.position = new Vector3(currentPosition.x, currentPosition.y += Time.deltaTime, currentPosition.z);
-            Debug.Log("What is Time.delta: " + Time.deltaTime);
             yield return null;
         }
-
-        //while ((alphaValue >= 0.0f && fadingOut) || (alphaValue <= 1.0f && !fadingOut)) {
-        //    alphaValue += Time.deltaTime * fadingOutSpeed;
-
-        //    for (int i = 0; i < rendererObjects.Length; i++) {
-        //        Color newColor = (colors != null ? colors[i] : rendererObjects[i].material.color);
-        //        newColor.a = Mathf.Min(newColor.a, alphaValue);
-        //        newColor.a = Mathf.Clamp(newColor.a, 0.0f, 1.0f);
-        //        rendererObjects[i].material.SetColor("_Color", newColor);
-        //    }
-
-        //    yield return null;
-        //}
-
-        //Debug.Log("fade sequence end : " + fadingOut);
-
     }
 
 
