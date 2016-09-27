@@ -11,9 +11,8 @@ public class ControllerHandling : MonoBehaviour {
     Weapons weapons;
 
     Vector3 lastObjectPosition;
-    Quaternion lastObjectRotation;   
+    Quaternion lastObjectRotation;
 
-    //test
     GunScript gscript;
 
     // Update is called once per frame
@@ -24,13 +23,20 @@ public class ControllerHandling : MonoBehaviour {
             this.gameObject.transform.Find("hand").gameObject.SetActive(true);
         }
 
-
         var device = SteamVR_Controller.Input((int)controller.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip)) {
             if (controller.transform.childCount > 2) {
-                this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
-                this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
-                this.gameObject.transform.GetChild(2).transform.parent = null;
+                Debug.Log("Testing: " + this.gameObject.transform.GetChild(2).tag);
+                if (this.gameObject.transform.GetChild(2).tag == "Scope") {
+
+                    this.gameObject.transform.GetChild(2).transform.position = this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopePosition;
+                    this.gameObject.transform.GetChild(2).transform.rotation = Quaternion.Euler(this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopeRotation);
+                    this.gameObject.transform.GetChild(2).transform.parent = null;
+                } else {
+                    this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
+                    this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
+                    this.gameObject.transform.GetChild(2).transform.parent = null;
+                }
             } else if (canPickup) {
                 objectPickup();
             }
@@ -43,9 +49,12 @@ public class ControllerHandling : MonoBehaviour {
         this.gameObject.transform.Find("hand").gameObject.SetActive(false);
 
         // Save object's current positions before picking it up
-        lastObjectPosition = pickedUpObject.transform.position;
-        lastObjectRotation = pickedUpObject.transform.rotation;
-
+        if (pickedUpObject.tag == "Scope") {
+            //Do nothing
+        } else {
+            lastObjectPosition = pickedUpObject.transform.position;
+            lastObjectRotation = pickedUpObject.transform.rotation;
+        }
         // Add the sniper to the parent controller
         pickedUpObject.transform.parent = controller.transform;
 

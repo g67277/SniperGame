@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\PersonAnimator.cs" />
     <Compile Include="Assets\Scripts\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\SceneStart.cs" />
+    <Compile Include="Assets\Scripts\Scope.cs" />
     <Compile Include="Assets\Scripts\Sniper.cs" />
     <Compile Include="Assets\Scripts\Sniper\ClipSniper.cs" />
     <Compile Include="Assets\Scripts\SniperSounds.cs" />

@@ -15,11 +15,10 @@ public class Weapons : ScriptableObject {
 
         if (incomingSniper.name == "Sniper2") {
             gunScript = incomingSniper.GetComponent<GunScript>();
-            gunScript.newMinFOV = 6;
+            gunScript.newMinFOV = 16;
             gunScript.bulletSpeedMultiplier = 6;
         } else if (incomingSniper.name == "Sniper4") {
             gunScript = incomingSniper.GetComponent<GunScript>();
-            gunScript.newMinFOV = 1;
             gunScript.bulletSpeedMultiplier = 10;
         } else if (incomingSniper.name == "Sniper6") {
             gunScript = incomingSniper.GetComponent<GunScript>();
