@@ -80,8 +80,8 @@ public class SniperBullet : MonoBehaviour {
             }else if (hit.transform.tag == woodImpactStaticTag) {
                 float distance = Vector3.Distance(hit.point, hit.collider.bounds.center);
                 string part = hit.collider.name;
-                if (hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>() != null) {
-                    hit.collider.gameObject.transform.root.gameObject.GetComponent<DummyTarget>().calculateHit(distance, part);
+                if (hit.collider.gameObject.transform.parent.gameObject.GetComponent<DummyTarget>() != null) {
+                    hit.collider.gameObject.transform.parent.gameObject.GetComponent<DummyTarget>().calculateHit(distance, part);
                 }
                 (Instantiate(woodImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
                 Destroy(gameObject);

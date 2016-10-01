@@ -26,8 +26,8 @@ public class WindDisplay : MonoBehaviour {
                 //Vector3 leftWind = new Vector3(197.0f, 2.7f, -0.1f);
                 //float test1 = leftWind.x;
                 //float test2 = leftWind.z;
-                float test3 = transform.position.x;
-                float test4 = transform.position.z;
+                //float test3 = transform.position.x;
+                //float test4 = transform.position.z;
 
                 if (transform.rotation.x <= 0) {
                     moveHair = false;

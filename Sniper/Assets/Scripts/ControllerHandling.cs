@@ -7,7 +7,6 @@ public class ControllerHandling : MonoBehaviour {
     GameObject pickedUpObject;
     bool canPickup = false;
 
-    Sniper sniper;
     Weapons weapons;
 
     Vector3 lastObjectPosition;
@@ -61,7 +60,6 @@ public class ControllerHandling : MonoBehaviour {
         pickedUpObject.transform.parent = controller.transform;
 
         // Pass the controller instance to the sniper
-        sniper = pickedUpObject.GetComponent<Sniper>();
         gscript = pickedUpObject.GetComponent<GunScript>();
         // Manages the different characteristics of the weapons
         weapons = ScriptableObject.CreateInstance("Weapons") as Weapons;
@@ -84,6 +82,8 @@ public class ControllerHandling : MonoBehaviour {
                 || collider.gameObject.tag == "Scope" && controller.transform.childCount < 3) {
                 pickedUpObject = collider.gameObject;
                 canPickup = true;
+            }else if (collider.gameObject.tag == "Reset") {
+                collider.gameObject.GetComponent<ResetButton>().resetScene();
             }
             
         }

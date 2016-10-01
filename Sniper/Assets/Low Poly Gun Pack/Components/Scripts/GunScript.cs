@@ -195,9 +195,6 @@ public class GunScript : MonoBehaviour	{
 	//Reload
 	IEnumerator Reload ()
 	{
-		
-
-		
 		//If sniper is true
 		if (WeaponType.sniper == true || WeaponType.sniperSilencer == true) {
 			//Play reload and slider eject animation

@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\Movements\VRTK_UIGraphicRaycaster.cs" />
     <Compile Include="Assets\Scripts\PersonAnimator.cs" />
     <Compile Include="Assets\Scripts\RandomMovement.cs" />
+    <Compile Include="Assets\Scripts\ResetButton.cs" />
     <Compile Include="Assets\Scripts\SceneStart.cs" />
     <Compile Include="Assets\Scripts\Scope.cs" />
     <Compile Include="Assets\Scripts\Sniper.cs" />

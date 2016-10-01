@@ -12,6 +12,8 @@ public class MissionManager : MonoBehaviour {
 
     public Vector3 ExitPosition;
     public Vector3 levelPosition;
+    public Vector3 ResetPosition;
+    public bool isReset;
     public int sceneIndex;
 
     bool isExpanding;
@@ -37,7 +39,6 @@ public class MissionManager : MonoBehaviour {
                 sceneIndex = 2;
             }
         }
-        
     }
 
     IEnumerator waitTillDeath(float waitTime) {

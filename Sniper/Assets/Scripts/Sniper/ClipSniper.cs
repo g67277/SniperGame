@@ -9,12 +9,6 @@ public class ClipSniper : MonoBehaviour {
 
     GunScript gunScript;
 
-	// Use this for initialization
-	void Start () {
-        //gunScript = sniper.GetComponent<GunScript>();
-        //Debug.Log("Is this assigned correctly, name: " + gunScript.name);
-    }
-
     void OnTriggerEnter(Collider col) {
         clip(col);
     }
