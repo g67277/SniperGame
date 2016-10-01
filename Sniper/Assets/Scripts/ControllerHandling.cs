@@ -26,13 +26,15 @@ public class ControllerHandling : MonoBehaviour {
         var device = SteamVR_Controller.Input((int)controller.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip)) {
             if (controller.transform.childCount > 2) {
-                Debug.Log("Testing: " + this.gameObject.transform.GetChild(2).tag);
                 if (this.gameObject.transform.GetChild(2).tag == "Scope") {
 
                     this.gameObject.transform.GetChild(2).transform.position = this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopePosition;
                     this.gameObject.transform.GetChild(2).transform.rotation = Quaternion.Euler(this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopeRotation);
                     this.gameObject.transform.GetChild(2).transform.parent = null;
                 } else {
+                    if (this.gameObject.transform.GetChild(2).tag == "Pickable") {
+                        gscript.isPickedUp = false;
+                    }
                     this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
                     this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
                     this.gameObject.transform.GetChild(2).transform.parent = null;
@@ -63,7 +65,7 @@ public class ControllerHandling : MonoBehaviour {
         gscript = pickedUpObject.GetComponent<GunScript>();
         // Manages the different characteristics of the weapons
         weapons = ScriptableObject.CreateInstance("Weapons") as Weapons;
-        if (pickedUpObject.name == "Sniper4" || pickedUpObject.name == "Sniper2" || pickedUpObject.name == "Sniper6") {
+        if (pickedUpObject.name == "Sniper3" || pickedUpObject.name == "Sniper2" || pickedUpObject.name == "Sniper1") {
             gscript.isPickedUp = true;
             gscript.controller = controller;
             weapons.setupWeapon(pickedUpObject);

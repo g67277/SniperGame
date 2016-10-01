@@ -11,11 +11,17 @@ public class ClipSniper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gunScript = gameObject.transform.root.GetComponent<GunScript>();
-	}
+        //gunScript = sniper.GetComponent<GunScript>();
+        //Debug.Log("Is this assigned correctly, name: " + gunScript.name);
+    }
 
-    void OnTriggerEnter(Collider col) {        
+    void OnTriggerEnter(Collider col) {
+        clip(col);
+    }
+
+    public void clip(Collider col) {
         if (gameObject.transform.parent.childCount < 3) {
+            
             if (col.gameObject.tag == "Scope") {
                 GameObject scope = col.gameObject;
                 scope.transform.parent = sniper.transform;
@@ -26,15 +32,15 @@ public class ClipSniper : MonoBehaviour {
                 scopeCamera.transform.position = spawnPoint.transform.position;
                 scopeCamera.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
 
-                gunScript.isThereScope = true;
-                gunScript.scopeCamera = scopeCamera;
+                sniper.GetComponent<GunScript>().isThereScope = true;
+                sniper.GetComponent<GunScript>().scopeCamera = scopeCamera;
 
                 if (scope.name == "Scope x11") {
-                    gunScript.newMinFOV = 1;
+                    sniper.GetComponent<GunScript>().newMinFOV = 1;
                 } else if (scope.name == "Scope x7") {
-                    gunScript.newMinFOV = 5;
+                    sniper.GetComponent<GunScript>().newMinFOV = 5;
                 } else if (scope.name == "Scope x5") {
-                    gunScript.newMinFOV = 16;
+                    sniper.GetComponent<GunScript>().newMinFOV = 16;
                 }
             }
         }

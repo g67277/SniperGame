@@ -33,7 +33,7 @@ public class WindDisplay : MonoBehaviour {
                     moveHair = false;
                 } else {
                     transform.RotateAround(hairBase.transform.position, Vector3.up, 20 * Time.deltaTime);
-                    Debug.Log("Hair roation: " + transform.rotation.x);
+                    //Debug.Log("Hair roation: " + transform.rotation.x);
                 }
             } else if (windDirection == 2) {
                 //Quaternion leftWind = new Quaternion(0.0f, 0.7f, -0.7f, 0.0f);

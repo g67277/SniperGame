@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\ControllerHandling.cs" />
     <Compile Include="Assets\Scripts\Counting\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\FadeObjectInOut.cs" />
+    <Compile Include="Assets\Scripts\LoadWeapon.cs" />
     <Compile Include="Assets\Scripts\MissionManager.cs" />
     <Compile Include="Assets\Scripts\MoveObjects.cs" />
     <Compile Include="Assets\Scripts\Movements.cs" />

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class MissionManager : MonoBehaviour {
 
-    public Camera camera;
+    public new Camera camera;
     public GameObject circle;
     public GameObject logo;
     public GameObject logoSpawn;
@@ -27,8 +27,10 @@ public class MissionManager : MonoBehaviour {
             expandLogo();
 
         } else {
-            expandLogo();
+            findWeapon();
+            StartCoroutine(waitTillDeath(3.0f));
             Debug.Log("Mission name: " + name);
+
             if (name == "Mission1") {
                 sceneIndex = 1;
             } else if (name == "mission2") {
@@ -36,6 +38,30 @@ public class MissionManager : MonoBehaviour {
             }
         }
         
+    }
+
+    IEnumerator waitTillDeath(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        expandLogo();
+    }
+
+    public void findWeapon() {
+        GameObject root = gameObject.transform.root.gameObject;
+        for (int i = 0; i < 2; i++) {
+            GameObject controller = root.transform.GetChild(i).gameObject;
+            for (int j = 0; j < controller.transform.childCount; j++) {
+                GameObject cObj = controller.transform.GetChild(j).gameObject;
+                if (cObj.tag == "Pickable") {
+                    PlayerPrefs.SetString("weapon", cObj.name);
+                    for (int s = 0; s < cObj.transform.childCount; s++) {
+                        GameObject sObj = cObj.transform.GetChild(s).gameObject;
+                        if (sObj.tag == "Scope") {
+                            PlayerPrefs.SetString("scope", sObj.name);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void expandLogo() {
@@ -47,7 +73,7 @@ public class MissionManager : MonoBehaviour {
     }
 
     public void deflateLogo() {
-        //camera.GetComponent<TeleportVive>().enabled = false;
+        camera.GetComponent<TeleportVive>().enabled = false;
         view = Instantiate(circle, logoSpawn.transform.position, logoSpawn.transform.rotation) as GameObject;
         view.transform.parent = gameObject.transform.parent.transform;
         view.transform.localScale = new Vector3(5f, 5f, 5f);
@@ -75,7 +101,7 @@ public class MissionManager : MonoBehaviour {
                     }
                 }else {
                     Destroy(view);
-                    //camera.GetComponent<TeleportVive>().enabled = true;
+                    camera.GetComponent<TeleportVive>().enabled = true;
                 }
             }
         }

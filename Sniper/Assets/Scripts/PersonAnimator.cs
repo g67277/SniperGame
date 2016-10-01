@@ -23,11 +23,15 @@ public class PersonAnimator : MonoBehaviour {
             //OnAIDeath();
         } else if(tag == "MiniTarget"){
             animator.Play("Death_02", -1, 0f);
+            
+            //yield return new WaitForSeconds(10f);
         } else {
             animator.Play("Run", -1, 0f);
         }
 
     }
+
+
 
     //Testing
     Collider[] rigColliders;
