@@ -476,8 +476,7 @@ public class GunScript : MonoBehaviour	{
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
                     //Save bullet count
-                    int bullets = PlayerPrefs.GetInt("BulletsNum") + 1;
-                    PlayerPrefs.SetInt("BulletsNum", bullets);
+                    DataHolder.totalBullets = DataHolder.totalBullets + 1;
 
                     //Muzzleflash
                     device.TriggerHapticPulse(2000);
@@ -506,8 +505,7 @@ public class GunScript : MonoBehaviour	{
                 device = SteamVR_Controller.Input((int)controller.index);
                 if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !outOfAmmo && !isReloading) {
                     //Save bullet count
-                    int bullets = PlayerPrefs.GetInt("BulletsNum") + 1;
-                    PlayerPrefs.SetInt("BulletsNum", bullets);
+                    DataHolder.totalBullets = DataHolder.totalBullets + 1;
 
                     //Muzzleflash
                     device.TriggerHapticPulse(2000);

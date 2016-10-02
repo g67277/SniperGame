@@ -23,8 +23,9 @@ public class LoadWeapon : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        string weaponName = PlayerPrefs.GetString("weapon");
-        string scopeName = PlayerPrefs.GetString("scope");
+        string weaponName = DataHolder.missionWeapon;
+        string scopeName = DataHolder.missionScope;
+        Debug.Log("Scope: " + DataHolder.missionScope);
         switch (weaponName) {
             case "Sniper1":
                 loadedWeapon = Instantiate(sniper1, position, Quaternion.Euler(rotation)) as GameObject;
@@ -67,8 +68,8 @@ public class LoadWeapon : MonoBehaviour {
         }
 
         //Remove the weapon prefs
-        PlayerPrefs.SetString("weapon", "");
-        PlayerPrefs.SetString("scope", "");
+        DataHolder.deleteData();
+        DataHolder.saveData(); //Testing
     }
 
     void addScope() {

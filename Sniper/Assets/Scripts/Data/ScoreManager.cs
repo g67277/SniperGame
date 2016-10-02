@@ -23,22 +23,20 @@ public class ScoreManager : MonoBehaviour {
         if (text.name == "SessionScore") {
             totalScore += score;
             score = 0;
-            PlayerPrefs.SetInt("Score", totalScore);
+            DataHolder.rangeScore = totalScore;
             text.text = totalScore.ToString();
         }
 
         if (text.name == "AverageAccuracy") {
-            float accuracy = PlayerPrefs.GetFloat("TotalAccuracy") * 100;
-            string accuracyString = accuracy.ToString("0");
-            text.text = "Average Accuracy: " + accuracyString + "%";
+            double accuracy = DataHolder.totalAccuracy * 100;
+            if (!double.IsNaN(accuracy)) {
+                string accuracyString = accuracy.ToString("0");
+                text.text = "Average Accuracy: " + accuracyString + "%";
+            }
         }
 
         if (text.name == "HighScore") {
-            if (PlayerPrefs.GetInt("HighScore") < PlayerPrefs.GetInt("Score")) {
-                PlayerPrefs.SetInt("HighScore", PlayerPrefs.GetInt("Score"));
-            }
-
-            text.text = "High Score: " + PlayerPrefs.GetInt("HighScore");
+            text.text = "High Score: " + DataHolder.rangeHighScore;
         }
 	}
 }

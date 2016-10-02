@@ -43,8 +43,7 @@ public class DummyTarget : MonoBehaviour {
 
     void saveHit() {
         //Save bullet count
-        int hits = PlayerPrefs.GetInt("HitsNum") + 1;
-        PlayerPrefs.SetInt("HitsNum", hits);
+        DataHolder.totalHits = DataHolder.totalHits + 1;
     }
    
 

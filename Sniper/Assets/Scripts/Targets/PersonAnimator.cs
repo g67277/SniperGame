@@ -13,8 +13,6 @@ public class PersonAnimator : MonoBehaviour {
 
     public void hitResult(string name, string tag) {
         animator = GetComponent<Animator>();
-        Debug.Log("*****Animator class hit string:" + name);
-        Debug.Log("*****Animator class hit tag:" + tag);
         if (name == "Head_jnt" || name == "Spine_jnt") {
             animator.Stop();
             

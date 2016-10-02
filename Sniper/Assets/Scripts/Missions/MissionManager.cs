@@ -13,7 +13,7 @@ public class MissionManager : MonoBehaviour {
     public Vector3 ExitPosition;
     public Vector3 levelPosition;
     public Vector3 ResetPosition;
-    public bool isReset;
+    public bool isReset = false;
     public int sceneIndex;
 
     bool isExpanding;
@@ -24,13 +24,12 @@ public class MissionManager : MonoBehaviour {
 
     public void missionSelection(string name) {
 
-
         if (name == "Home") {
             expandLogo();
 
         } else {
             findWeapon();
-            StartCoroutine(waitTillDeath(3.0f));
+            StartCoroutine(waitTillDeath(1.5f));
             Debug.Log("Mission name: " + name);
 
             if (name == "Mission1") {
@@ -39,6 +38,17 @@ public class MissionManager : MonoBehaviour {
                 sceneIndex = 2;
             }
         }
+    }
+
+    public void resetMission() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void afterReset() {
+        float[] playerPosition = DataHolder.resetCoordinates;
+        Vector3 position = new Vector3(playerPosition[0], playerPosition[1], playerPosition[2]);
+        GameObject.Find("[CameraRig]").transform.position = position;
+        ;
     }
 
     IEnumerator waitTillDeath(float waitTime) {
@@ -53,11 +63,11 @@ public class MissionManager : MonoBehaviour {
             for (int j = 0; j < controller.transform.childCount; j++) {
                 GameObject cObj = controller.transform.GetChild(j).gameObject;
                 if (cObj.tag == "Pickable") {
-                    PlayerPrefs.SetString("weapon", cObj.name);
+                    DataHolder.missionWeapon = cObj.name;
                     for (int s = 0; s < cObj.transform.childCount; s++) {
                         GameObject sObj = cObj.transform.GetChild(s).gameObject;
                         if (sObj.tag == "Scope") {
-                            PlayerPrefs.SetString("scope", sObj.name);
+                            DataHolder.missionScope = sObj.name;
                         }
                     }
                 }
@@ -91,10 +101,11 @@ public class MissionManager : MonoBehaviour {
                         gameObject.transform.root.transform.position = ExitPosition;
                     }
                 }else if (view.transform.localScale.x > 4.9f) {
+                    DataHolder.saveData();
                     SceneManager.LoadScene(sceneIndex);
                     deflateLogo();
                 }
-            }else {
+            }else if (!isExpanding) {
                 if (view.transform.localScale.x >= 0.1f) {
                     view.transform.localScale = new Vector3(view.transform.localScale.x - 0.05f, view.transform.localScale.y - 0.05f, view.transform.localScale.z - 0.05f);
                     if (view.transform.localScale.x > 1.5f && view.transform.localScale.x < 1.8f) {
