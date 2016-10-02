@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Missions/Swat Mission.unity
+- path: Assets/Scene/Home.unity
   isLoaded: 1
   isActive: 1
