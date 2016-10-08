@@ -17,6 +17,9 @@ public class MissionManager : MonoBehaviour {
     public int sceneIndex;
 
     bool isExpanding;
+
+    //For levels that don't have the teleporter
+    public bool hasTeleporter = true;
     // Use this for initialization
     void Start () {
 	
@@ -84,7 +87,9 @@ public class MissionManager : MonoBehaviour {
     }
 
     public void deflateLogo() {
-        camera.GetComponent<TeleportVive>().enabled = false;
+        if (hasTeleporter) {
+            camera.GetComponent<TeleportVive>().enabled = false;
+        }
         view = Instantiate(circle, logoSpawn.transform.position, logoSpawn.transform.rotation) as GameObject;
         view.transform.parent = gameObject.transform.parent.transform;
         view.transform.localScale = new Vector3(5f, 5f, 5f);
@@ -113,7 +118,9 @@ public class MissionManager : MonoBehaviour {
                     }
                 }else {
                     Destroy(view);
-                    camera.GetComponent<TeleportVive>().enabled = true;
+                    if (hasTeleporter) {
+                        camera.GetComponent<TeleportVive>().enabled = true;
+                    }
                 }
             }
         }

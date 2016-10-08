@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour {
         if (text.name == "SessionScore") {
             totalScore += score;
             score = 0;
-            DataHolder.rangeScore = totalScore;
+            DataHolder.Score = totalScore;
             text.text = totalScore.ToString();
         }
 

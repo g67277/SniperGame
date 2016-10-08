@@ -198,7 +198,6 @@ public class PedestrianSystem : MonoBehaviour
 	{
 		if(m_objectSpawnCountMax <= -1)
 			return true;
-
 		if(m_spawnedObjects.Count < m_objectSpawnCountMax)
 			return true;
 		

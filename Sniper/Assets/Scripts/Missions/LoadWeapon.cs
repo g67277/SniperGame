@@ -14,6 +14,7 @@ public class LoadWeapon : MonoBehaviour {
     public GameObject scope3;
 
     [Header("Coordinates to position the weapon")]
+    public GameObject weaponParent;
     public Vector3 position;
     public Vector3 rotation;
 
@@ -29,14 +30,21 @@ public class LoadWeapon : MonoBehaviour {
         switch (weaponName) {
             case "Sniper1":
                 loadedWeapon = Instantiate(sniper1, position, Quaternion.Euler(rotation)) as GameObject;
+                loadedWeapon.transform.parent = weaponParent.transform;
+                loadedWeapon.transform.localPosition = position;
                 loadedWeapon.name = "Sniper1";
                 break;
             case "Sniper2":
                 loadedWeapon = Instantiate(sniper2, position, Quaternion.Euler(rotation)) as GameObject;
+                loadedWeapon.transform.parent = weaponParent.transform;
+                loadedWeapon.transform.localPosition = position;
                 loadedWeapon.name = "Sniper2";
                 break;
             case "Sniper3":
+                Debug.Log("Incoming weapon position: " + position);
                 loadedWeapon = Instantiate(sniper3, position, Quaternion.Euler(rotation)) as GameObject;
+                loadedWeapon.transform.parent = weaponParent.transform;
+                loadedWeapon.transform.localPosition = position;
                 loadedWeapon.name = "Sniper3";
                 break;
             default:

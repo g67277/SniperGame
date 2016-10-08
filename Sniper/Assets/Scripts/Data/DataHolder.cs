@@ -6,7 +6,9 @@ public class DataHolder : MonoBehaviour {
     public static double totalAccuracy;                 //Accuracy for the whole game and range
     public static int sessionBullets;                  //Total bullets fired during each mission
     public static int sessionHits;                     //Total hits during each mission
-    public static int rangeScore;                      //Final score for the range, overwrites the highscore when it surpasses it
+    public static int Score;                      //Final score for the range, overwrites the highscore when it surpasses it
+    public static bool inMission;                      //Check if player is in a mission, to start saving the mission score
+    public static int missionIndex;                    //Tells us which mission the player is playing
 
     //Items to be saved permenantly
     public static double[] sessionAccuracy;             //Accuracy for the current session, not saved for the range, but saved for the levels
@@ -29,11 +31,10 @@ public class DataHolder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        ////Loaded after the scene has started, then deleted
-        //missionWeapon = PlayerPrefs.GetString("weapon");
-        //missionScope = PlayerPrefs.GetString("scope");
         loadData();
+        if (missionScore.Length < 16) {                     // Initializing the mission Score array
+            missionScore = new int[16];
+        }
     }
 
     // Update is called once per frame
@@ -41,8 +42,15 @@ public class DataHolder : MonoBehaviour {
         //Calculate everything
         
         totalAccuracy = (double)totalHits / (double)totalBullets;
-        if (rangeScore > rangeHighScore) {
-            rangeHighScore = rangeScore;
+        if (inMission) {
+
+            if (Score > missionScore[missionIndex]) {
+                missionScore[missionIndex] = Score;
+            }
+        } else {
+            if (Score > rangeHighScore) {
+                rangeHighScore = Score;
+            }
         }
     }
 

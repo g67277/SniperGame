@@ -40,6 +40,7 @@ public class GameData {
     public string missionWeapon;
     public string missionScope;
     public bool isReset;
+    public int[] missionScore;
 
     public GameData() {
         totalHits = DataHolder.totalHits;
@@ -50,5 +51,8 @@ public class GameData {
         missionWeapon = DataHolder.missionWeapon;
         missionScope = DataHolder.missionScope;
         isReset = DataHolder.isReset;
+
+        //Stores mission Scores;
+        missionScore = DataHolder.missionScore;
     }
 }
