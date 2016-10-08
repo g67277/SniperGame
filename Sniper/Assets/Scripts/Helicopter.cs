@@ -5,46 +5,52 @@ public class Helicopter : MonoBehaviour {
 
     public GameObject player;
     public GameObject rotor;
-    public GameObject heliFront;
+    public Light heliLight;
+    public GameObject missile;
+
+    public AudioSource heliSound;
 
     bool moveHeliUp = false;
     bool moveToPlayer = false;
 
-    int heliCeiling = 0;
-
     public void heliAttack() {
         rotor.GetComponent<Animator>().enabled = true;
         moveHeliUp = true;
+        moveToPlayer = true;
+        heliSound.Play();
     }
 	
     void Start() {
-        heliAttack();
+        //heliAttack();
     }
 	// Update is called once per frame
 	void Update () {
-	    if (moveHeliUp) {
-            moveUp();
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 10f * Time.deltaTime);
-            heliFront.transform.LookAt(player.transform);
+	    if (moveToPlayer) {
+            if (moveHeliUp) {
+                moveUp();
+            }
 
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 10f * Time.deltaTime);
+            transform.LookAt(2 * transform.position - player.transform.position);
+            Vector3 offset = transform.position - player.transform.position;
+            float sqrLen = offset.sqrMagnitude;
+
+            if (sqrLen < 7634) {
+                moveToPlayer = false;
+                missile.GetComponent<Missile>().player = player;
+                missile.GetComponent<Missile>().missleAttack();
+            }
         }
     }
 
     void moveUp() {
-
-        //while (heliCeiling < 6) {
      
-            Vector3 heliHight = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
+        Vector3 heliHight = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
         if (heliHight.y < 30) {
             transform.position = Vector3.MoveTowards(transform.position, heliHight, 5f * Time.deltaTime);
-            Debug.Log(heliHight.y);
+        }else {
+            moveHeliUp = false;
         }
-         //   heliCeiling++;
-       // }
-
-        
-
-
     }
 
 }

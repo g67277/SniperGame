@@ -99,6 +99,8 @@
     <Compile Include="Assets\Scripts\Data\SaveLoadData.cs" />
     <Compile Include="Assets\Scripts\Data\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\Helicopter.cs" />
+    <Compile Include="Assets\Scripts\Military\MilAnimation.cs" />
+    <Compile Include="Assets\Scripts\Missile.cs" />
     <Compile Include="Assets\Scripts\Missions\LoadWeapon.cs" />
     <Compile Include="Assets\Scripts\Missions\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Missions\ResetButton.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Assets\Scripts\Movements\VRTK_TouchpadWalking.cs" />
     <Compile Include="Assets\Scripts\Movements\VRTK_UIGraphicRaycaster.cs" />
     <Compile Include="Assets\Scripts\No Zone\NoZone.cs" />
+    <Compile Include="Assets\Scripts\ParentMovement.cs" />
     <Compile Include="Assets\Scripts\Sniper\ClipSniper.cs" />
     <Compile Include="Assets\Scripts\Sniper\Scope.cs" />
     <Compile Include="Assets\Scripts\Sniper\Weapons.cs" />
@@ -124,7 +127,6 @@
     <Compile Include="Assets\Scripts\Targets\FadeObjectInOut.cs" />
     <Compile Include="Assets\Scripts\Targets\MoveObjects.cs" />
     <Compile Include="Assets\Scripts\Targets\PersonAnimator.cs" />
-    <Compile Include="Assets\Scripts\Testing\ParentMovement.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Movements.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Sniper.cs" />
