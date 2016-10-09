@@ -57,10 +57,10 @@ public class GameController : MonoBehaviour {
         if (DataHolder.missionIndex == 1) {
             if (rootName.Contains("Main2")) {
                 turnOffLight(incomingObj);
-                checkMissionRules();
             }
         }
 
+        checkMissionRules();
         DataHolder.totalHits = DataHolder.totalHits + 1;
         DataHolder.sessionHits = DataHolder.sessionHits + 1;
     }
@@ -70,10 +70,17 @@ public class GameController : MonoBehaviour {
             if (!missionRules.GetComponent<MissionRules>().checkRules(rootName)) {
                 missionFail = true;
                 //Testing will change...
+                GameObject.Find("Siren").GetComponent<AudioSource>().Play();
                 GameObject.Find("Heli").GetComponent<Helicopter>().heliAttack();
                 // Mission Failure Script
+                Invoke("missionFailed", 3.0f);
             }
         }
+    }
+
+    public void missionFailed() {
+        GameObject.Find("boat").GetComponent<ParentMovement>().clip = false;
+        GameObject.Find("MissionReport").GetComponent<MissionReport>().TransportToMissionReport();
     }
 
     public void killed(string objTag, int points) {

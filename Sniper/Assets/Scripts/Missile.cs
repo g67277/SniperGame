@@ -5,6 +5,7 @@ public class Missile : MonoBehaviour {
 
     public new Light light;
     public GameObject trail;
+    public GameObject explosionFX;
 
     [Header("Audio")]
     public AudioSource trailAudio;
@@ -38,6 +39,7 @@ public class Missile : MonoBehaviour {
                 explosion.Play();
                 attack = false;
                 trailAudio.Stop();
+                explosionFX.SetActive(true);
             }
         }
     }

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d53e834d5917a604ba2f50261d75f0af
+timeCreated: 1476033009
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Baveuse
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7337419cbec7cad44a5f1705ed794528, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

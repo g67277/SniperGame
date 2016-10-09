@@ -16,6 +16,7 @@ public class DataHolder : MonoBehaviour {
     public static int totalBullets;                    //Total bullets fired since the start of the game (used to calculate accuracy)
     public static int totalHits;                       //Total hits on targets, rage or mission, since the start of the game (used to calculate accuracy)
     public static int[] missionScore;                  //Final score for each mission
+    public static int[] missionStars;                  //Holds the star level for each mission
     public static int rangeHighScore;                  //Saves the high score of the range
     public static int cash;                            //Total cash earned
     public static int weapons;                         //Weapons unlocked, 1 = simple sniper, 2 second sniper, 3 best sniper

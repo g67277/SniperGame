@@ -11,7 +11,7 @@ public class ParentMovement : MonoBehaviour {
     Quaternion rotation;
     Vector3 radius = new Vector3(5, 0, 0);
     float currentRotation = 0.0f;
-    bool clip = false;
+    public bool clip = false;
 
     // Use this for initialization
     void Start () {
