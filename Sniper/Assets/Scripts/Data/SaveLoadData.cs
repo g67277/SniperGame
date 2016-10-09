@@ -41,6 +41,7 @@ public class GameData {
     public string missionScope;
     public bool isReset;
     public int[] missionScore;
+    public double[] sessionAccuracy;
 
     public GameData() {
         totalHits = DataHolder.totalHits;
@@ -53,6 +54,7 @@ public class GameData {
         isReset = DataHolder.isReset;
 
         //Stores mission Scores;
+        sessionAccuracy = DataHolder.sessionAccuracy;
         missionScore = DataHolder.missionScore;
     }
 }

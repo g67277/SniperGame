@@ -80,7 +80,6 @@
     <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Casings &amp; Mags\ProjectileScript.cs" />
     <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Explosion &amp; Impact\ExplosionScript.cs" />
     <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\Explosion &amp; Impact\ImpactScript.cs" />
-    <Compile Include="Assets\Low Poly Gun Pack\Components\Scripts\GunScript.cs" />
     <Compile Include="Assets\Lowpoly_Landscapes\Scenes\DemoCamera.cs" />
     <Compile Include="Assets\Pedestrian System\Scripts\PedestrianNode.cs" />
     <Compile Include="Assets\Pedestrian System\Scripts\PedestrianObject.cs" />
@@ -122,13 +121,14 @@
     <Compile Include="Assets\Scripts\No Zone\NoZone.cs" />
     <Compile Include="Assets\Scripts\ParentMovement.cs" />
     <Compile Include="Assets\Scripts\Sniper\ClipSniper.cs" />
+    <Compile Include="Assets\Scripts\Sniper\GunScript.cs" />
     <Compile Include="Assets\Scripts\Sniper\Scope.cs" />
     <Compile Include="Assets\Scripts\Sniper\Weapons.cs" />
     <Compile Include="Assets\Scripts\Sniper\WindDisplay.cs" />
     <Compile Include="Assets\Scripts\Targets\DummyTarget.cs" />
     <Compile Include="Assets\Scripts\Targets\FadeObjectInOut.cs" />
+    <Compile Include="Assets\Scripts\Targets\GameController.cs" />
     <Compile Include="Assets\Scripts\Targets\MoveObjects.cs" />
-    <Compile Include="Assets\Scripts\Targets\PersonAnimator.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Movements.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Sniper.cs" />

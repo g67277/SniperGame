@@ -33,7 +33,6 @@ public class Missile : MonoBehaviour {
             transform.LookAt(2 * transform.position - player.transform.position);
             Vector3 offset = transform.position - player.transform.position;
             float sqrlen = offset.sqrMagnitude;
-            Debug.Log("Distance: " + sqrlen);
 
             if (sqrlen < 15) {
                 explosion.Play();

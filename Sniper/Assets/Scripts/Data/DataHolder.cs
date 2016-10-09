@@ -9,6 +9,7 @@ public class DataHolder : MonoBehaviour {
     public static int Score;                      //Final score for the range, overwrites the highscore when it surpasses it
     public static bool inMission;                      //Check if player is in a mission, to start saving the mission score
     public static int missionIndex;                    //Tells us which mission the player is playing
+    public static int civiliansKilled;                 //Tells us how many civilians were killed in the mission
 
     //Items to be saved permenantly
     public static double[] sessionAccuracy;             //Accuracy for the current session, not saved for the range, but saved for the levels
@@ -32,25 +33,38 @@ public class DataHolder : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         loadData();
-        if (missionScore.Length < 16) {                     // Initializing the mission Score array
+        if (missionScore == null) {                     // Initializing the mission Score array
             missionScore = new int[16];
         }
+
+        if (sessionAccuracy == null) {
+            sessionAccuracy = new double[16];
+        }
+        
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         //Calculate everything
-        
-        totalAccuracy = (double)totalHits / (double)totalBullets;
-        if (inMission) {
 
-            if (Score > missionScore[missionIndex]) {
-                missionScore[missionIndex] = Score;
-            }
-        } else {
+        totalAccuracy = (double)totalHits / (double)totalBullets;
+        if (!inMission) {
             if (Score > rangeHighScore) {
                 rangeHighScore = Score;
             }
+        }
+    }
+
+    public static void checkMissionScore() {
+
+        sessionAccuracy[missionIndex] = ((double)sessionHits / (double)sessionBullets) * 100;
+        Debug.Log("Session Accuracy: " + sessionAccuracy[missionIndex]);
+        if (sessionAccuracy[missionIndex] > 79) {
+            Score = Score + (int)Mathf.Ceil((float)sessionAccuracy[missionIndex]);
+        }
+        Debug.Log("Finishing Score: " + Score);
+        if (Score > missionScore[missionIndex]) {
+            missionScore[missionIndex] = Score;
         }
     }
 

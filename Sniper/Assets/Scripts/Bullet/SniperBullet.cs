@@ -34,7 +34,7 @@ public class SniperBullet : MonoBehaviour {
     Vector3 fireDirection;
 
     //public Animator animator;
-    PersonAnimator pAnimator;
+    GameController gController;
 
     Vector3 newPosition = Vector3.zero;
     Vector3 newVelocity = Vector3.zero;
@@ -100,15 +100,17 @@ public class SniperBullet : MonoBehaviour {
     }
 
     void TargetHit(GameObject target) {
-        pAnimator = target.transform.root.gameObject.GetComponent<PersonAnimator>();
+        gController = target.transform.root.gameObject.GetComponent<GameController>();
 
         Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
-        pAnimator.checkHit(target);
-        //pAnimator.hitResult(target.name, target.tag);
+        gController.checkHit(target);
+        //gController.hitResult(target.name, target.tag);
         if (target.tag == "MiniTarget") {
             GameObject.Find("Camera (eye)").GetComponent<MissionManager>().missionSelection(target.name);
         }
-        target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
+        if (target.GetComponent<Rigidbody>() != null) {
+            target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
+        }
         Destroy(gameObject);
     }
 
