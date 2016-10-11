@@ -32,13 +32,10 @@ public class SniperBullet : MonoBehaviour {
     public Vector3 currentPosition;
     public Vector3 currentVelocity;
     Vector3 fireDirection;
-
-    //public Animator animator;
-    GameController gController;
-
     Vector3 newPosition = Vector3.zero;
     Vector3 newVelocity = Vector3.zero;
 
+    Person person;                              //Person script is attached to all humans
 
     void Awake() {
         currentPosition = transform.position;
@@ -71,8 +68,11 @@ public class SniperBullet : MonoBehaviour {
             } else if (hit.collider.CompareTag("Civilian")) {
                 CivilianHit(hit.collider.gameObject);
             } else if (hit.collider.CompareTag("Bird")) {
-                hit.collider.gameObject.transform.root.gameObject.GetComponent<Bird>().hitBird(hit.collider.gameObject);
+                hit.collider.gameObject.transform.root.gameObject.GetComponent<Bird>().hitBird(hit.collider.gameObject);   //Need to take a second look at this **
                 
+            } else if (hit.collider.CompareTag("Light")) {
+                hit.collider.gameObject.GetComponent<LightScript>().killLight();
+
             } else if (hit.transform.tag == metalImpactStaticTag) {
                 (Instantiate(metalImpactStaticPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as Transform).parent = hit.collider.gameObject.transform;
             }else if (hit.transform.tag == metalImpactTag) {
@@ -100,13 +100,13 @@ public class SniperBullet : MonoBehaviour {
     }
 
     void TargetHit(GameObject target) {
-        gController = target.transform.root.gameObject.GetComponent<GameController>();
+        person = target.transform.root.gameObject.GetComponent<Person>();
 
         Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
-        gController.checkHit(target);
-        //gController.hitResult(target.name, target.tag);
+        person.checkHit(target);
+
         if (target.tag == "MiniTarget") {
-            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().missionSelection(target.name);
+            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().missionSelection(target.name);  //Need to work on this for mission selection **
         }
         if (target.GetComponent<Rigidbody>() != null) {
             target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);

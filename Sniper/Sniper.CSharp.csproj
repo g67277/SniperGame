@@ -94,11 +94,12 @@
     <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
     <Compile Include="Assets\Scripts\Bullet\SniperBullet.cs" />
     <Compile Include="Assets\Scripts\Controllers\ControllerHandling.cs" />
+    <Compile Include="Assets\Scripts\DEV ONLY\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Data\DataHolder.cs" />
     <Compile Include="Assets\Scripts\Data\SaveLoadData.cs" />
     <Compile Include="Assets\Scripts\Data\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Enviorment\LightScript.cs" />
     <Compile Include="Assets\Scripts\Helicopter.cs" />
-    <Compile Include="Assets\Scripts\Military\MilAnimation.cs" />
     <Compile Include="Assets\Scripts\Missile.cs" />
     <Compile Include="Assets\Scripts\MissionReport\MissionReport.cs" />
     <Compile Include="Assets\Scripts\Missions\Island Mission\IslandMissionRules.cs" />
@@ -130,11 +131,13 @@
     <Compile Include="Assets\Scripts\Targets\FadeObjectInOut.cs" />
     <Compile Include="Assets\Scripts\Targets\GameController.cs" />
     <Compile Include="Assets\Scripts\Targets\MoveObjects.cs" />
+    <Compile Include="Assets\Scripts\Targets\Person.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Movements.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\RandomMovement.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\Sniper.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\SniperSounds.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\basicAI.cs" />
+    <Compile Include="Assets\Scripts\Util.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />

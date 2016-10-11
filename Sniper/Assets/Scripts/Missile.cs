@@ -40,6 +40,7 @@ public class Missile : MonoBehaviour {
                 attack = false;
                 trailAudio.Stop();
                 explosionFX.SetActive(true);
+                GameController.finish = true;                   //Tells the gameController to invoke the finishMission method
             }
         }
     }

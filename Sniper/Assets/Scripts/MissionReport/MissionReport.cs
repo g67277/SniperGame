@@ -26,11 +26,7 @@ public class MissionReport : MonoBehaviour {
 
     public void TransportToMissionReport() {
         cameraRig.transform.position = rigPosition;
-        totalScore.text = totalScore.text + " Hello";
+        totalScore.text = totalScore.text + DataHolder.missionScore[DataHolder.missionIndex];
     }
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+
 }
