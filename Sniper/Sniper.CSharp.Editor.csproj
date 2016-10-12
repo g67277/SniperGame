@@ -116,6 +116,7 @@
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Update.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Electricity\Shaders\lightning.shader" />
     <None Include="Assets\Packages\Movinarc\PackageUninstaller\README.txt" />
     <None Include="Assets\Packages\SimpleSky\ReadMe.txt" />
     <None Include="Assets\Packages\SimpleWorld\SimpleCitizens\Changelog.txt" />

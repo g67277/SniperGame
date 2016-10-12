@@ -60,7 +60,7 @@ public class Person : MonoBehaviour {
             DataHolder.civiliansKilled = DataHolder.civiliansKilled + 1;
             score = -50;
         }
-        gameController.GetComponent<GameController>().checkScore(id, badGuy, position, score);
+        gameController.GetComponent<GameController>().checkScore(id, badGuy, gameObject, score);
         Invoke("StopBody", 3.0f);
     }
 

@@ -11,9 +11,9 @@ public class SceneStart : MonoBehaviour {
         DataHolder.missionIndex = missionIndex;
         DataHolder.inMission = inMission;
         if (DataHolder.isReset) {
-            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().afterReset();
+            GetComponent<MissionManager>().afterReset();
         } else {
-            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().deflateLogo();
+            GetComponent<MissionManager>().deflateLogo();
         }
     }
 }

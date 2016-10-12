@@ -26,7 +26,7 @@ public class MissionReport : MonoBehaviour {
 
     public void TransportToMissionReport() {
         cameraRig.transform.position = rigPosition;
-        totalScore.text = totalScore.text + DataHolder.missionScore[DataHolder.missionIndex];
+        totalScore.text = totalScore.text + DataHolder.Score;
     }
 
 }

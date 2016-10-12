@@ -3,12 +3,12 @@ using System.Collections;
 
 public class MissionRules : MonoBehaviour {
 
-    public GameObject gameController;
-
     public int missionType;                             //1= Military Mission, 2= Regular Mission, 3= Special Mission
     public int phase1;
     public int phase2;
     public int phase3;
+
+    public int secondary;
 
     bool failed = false;                                //Set this to true once mission failed so that it does not keep runing 
 
@@ -22,11 +22,13 @@ public class MissionRules : MonoBehaviour {
         } else if (identifier.Contains("Main3") && phase1 == 0 && phase2 == 0) {
             phase3--;
             if (phase3 == 0) {
-                gameController.GetComponent<GameController>().Success();
+                GetComponent<GameController>().Success();
             }
-        }else {
+        } else if (identifier == "Secondary") {
+            secondary--;
+        } else {
             if (!failed) {
-                gameController.GetComponent<GameController>().Failure(missionType);
+                GetComponent<GameController>().Failure(missionType);
                 failed = true;
             }
         }

@@ -12,7 +12,8 @@ public class DataHolder : MonoBehaviour {
     public static int civiliansKilled;                 //Tells us how many civilians were killed in the mission
 
     //Items to be saved permenantly
-    public static double[] sessionAccuracy;             //Accuracy for the current session, not saved for the range, but saved for the levels
+    public static double[] sessionAccuracy;            //Accuracy for the current session, not saved for the range, but saved for the levels
+    public static double longestHit;                   //Longest hit in meters 
     public static int totalBullets;                    //Total bullets fired since the start of the game (used to calculate accuracy)
     public static int totalHits;                       //Total hits on targets, rage or mission, since the start of the game (used to calculate accuracy)
     public static int[] missionScore;                  //Final score for each mission

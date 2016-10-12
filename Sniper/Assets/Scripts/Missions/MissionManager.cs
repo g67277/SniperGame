@@ -91,7 +91,7 @@ public class MissionManager : MonoBehaviour {
             camera.GetComponent<TeleportVive>().enabled = false;
         }
         view = Instantiate(circle, logoSpawn.transform.position, logoSpawn.transform.rotation) as GameObject;
-        view.transform.parent = gameObject.transform.parent.transform;
+        view.transform.parent = camera.transform.parent.transform;
         view.transform.localScale = new Vector3(5f, 5f, 5f);
         isExpanding = false;
     }

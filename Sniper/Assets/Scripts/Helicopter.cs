@@ -16,7 +16,6 @@ public class Helicopter : MonoBehaviour {
     public void heliAttack() {
         rotor.GetComponent<Animator>().enabled = true;
         moveHeliUp = true;
-        moveToPlayer = true;
         heliSound.Play();
     }
 	
@@ -25,13 +24,13 @@ public class Helicopter : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-	    if (moveToPlayer) {
-            if (moveHeliUp) {
-                moveUp();
-            }
+        if (moveHeliUp) {
+            moveUp();
+        }
+        if (moveToPlayer) {
 
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 10f * Time.deltaTime);
-            transform.LookAt(2 * transform.position - player.transform.position);
+
             Vector3 offset = transform.position - player.transform.position;
             float sqrLen = offset.sqrMagnitude;
 
@@ -43,8 +42,11 @@ public class Helicopter : MonoBehaviour {
         }
     }
 
+    public Quaternion rotationtest = Quaternion.identity;
+
     void moveUp() {
-     
+        transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, Time.deltaTime);
+        moveToPlayer = true;
         Vector3 heliHight = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
         if (heliHight.y < 30) {
             transform.position = Vector3.MoveTowards(transform.position, heliHight, 5f * Time.deltaTime);

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject missionRules;                        //Retrives the mission rules
     public GameObject missionReport;                       //Calls the mission report script to display end of mission report
     public GameObject player;                              //Get the player to calculate distance from the target.
 
@@ -23,32 +22,36 @@ public class GameController : MonoBehaviour {
     int score = 0;                                  // Holds score to be saved at the end of the game
 
 
-    public void checkObjectHit(GameObject incomingObj, string id) {
-        if (incomingObj.GetComponent<Light>() != null || incomingObj.GetComponentsInChildren<Light>() != null) {
-            turnOffLight(incomingObj);
+    public void checkObjectHit(GameObject incomingObject, string id, bool badObject) {
+        calculateDistanceMultiplier(Util.CalculateDistance(incomingObject.transform.position, player.transform.position));        //Gets distance from the distance helper method
+
+        if (incomingObject.GetComponent<Light>() != null || incomingObject.GetComponentsInChildren<Light>() != null) {
+            turnOffLight(incomingObject);
         }
 
-        if (id.Contains("Main")) {
-            missionRules.GetComponent<MissionRules>().checkRules(id);
+        if (id.Contains("Secondary") && badObject) {
+            int points = 20 * (int)distanceMultiplier;
+            DataHolder.Score = DataHolder.Score + points;
+            GetComponent<Util>().displayHitScore(points, incomingObject, player);
         }
+        if (id.Contains("Main") || id.Contains("Secondary")) {
+            GetComponent<MissionRules>().checkRules(id);
+        }
+        
     }
 
-    public void checkScore(string id, bool badGuy, Vector3 position, int points) {
+    public void checkScore(string id, bool badGuy, GameObject incomingObject, int points) {
 
-        calculateDistanceMultiplier(Util.CalculateDistance(position, player.transform.position));        //Gets distance from the distance helper method
+        calculateDistanceMultiplier(Util.CalculateDistance(incomingObject.transform.position, player.transform.position));        //Gets distance from the distance helper method
         if (badGuy) {
             points = points * (int)distanceMultiplier;
         }
         DataHolder.Score = DataHolder.Score + points;
-
-        if (id.Contains("Main")) {
-            missionRules.GetComponent<MissionRules>().checkRules(id);
+        if (id.Contains("Main") || id.Contains("Secondary")) {
+            GetComponent<MissionRules>().checkRules(id);
         }
-    }
 
-    public void missionFailed() {
-        GameObject.Find("boat").GetComponent<ParentMovement>().clip = false;
-        GameObject.Find("MissionReport").GetComponent<MissionReport>().TransportToMissionReport();
+        GetComponent<Util>().displayHitScore(points, incomingObject, player);
     }
 
     void calculateDistanceMultiplier(float distance) {
@@ -81,6 +84,7 @@ public class GameController : MonoBehaviour {
 
     void Update() {
         if (finish) {
+            DataHolder.checkMissionScore();
             Invoke("finishMission", 2.0f);
             finish = false;
         }
