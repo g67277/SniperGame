@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 //Note**: This class uses the DataHolder
- 
+
 public class Person : MonoBehaviour {
 
     public string id;                   //identifies which person this is for the mission rules
@@ -40,7 +41,9 @@ public class Person : MonoBehaviour {
         } else if (incomingObj.name == "Spine_jnt") {
             personKilled(25);
         } else if (incomingObj.tag == "MiniTarget") {
-            animator.Play("death", -1, 0f);                             
+            animator.Play("death", -1, 0f);
+            DataHolder.missionIndex = Convert.ToInt32(id);
+            gameController.GetComponent<MissionManager>().missionSelection();
         } else if (gameObject.GetComponent<Animator>() != null) {
             animator.Play("state2", -1, 0f);
         }

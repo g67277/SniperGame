@@ -15,13 +15,13 @@ public class ParentMovement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(waitForEntry());
+        //StartCoroutine(waitForEntry());
 	}
 
-    IEnumerator waitForEntry() {
-        yield return new WaitForSeconds(1.2f);
-        clip = true;
-    }
+    //IEnumerator waitForEntry() {
+    //    yield return new WaitForSeconds(1.2f);
+    //    clip = true;
+    //}
 
     // Update is called once per frame
     void Update() {

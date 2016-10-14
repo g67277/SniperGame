@@ -29,11 +29,12 @@ public class DataHolder : MonoBehaviour {
     public static string missionWeapon;                //Weapon selected for the mission
     public static string missionScope;                 //Scope selected for the mission
     public static float[] resetCoordinates;              //Coordinates to reset position when we want to reset the range or the mission
-    public static bool isReset = false;                        // Check if we're trying to reset the mission
+    public static bool isReset = false;                // Check if we're trying to reset the mission
     
 
 	// Use this for initialization
 	void Start () {
+
         loadData();
         if (missionScore == null) {                     // Initializing the mission Score array
             missionScore = new int[16];
@@ -42,7 +43,7 @@ public class DataHolder : MonoBehaviour {
         if (sessionAccuracy == null) {
             sessionAccuracy = new double[16];
         }
-        
+
     }
 
     // Update is called once per frame
@@ -86,21 +87,11 @@ public class DataHolder : MonoBehaviour {
             //Temporarly loaded after mission start
             missionWeapon = data.missionWeapon;
             missionScope = data.missionScope;
-            Debug.Log("Mission Weapon: " + missionWeapon);
         }
     }
 
     public static void saveData() {
         SaveLoadData.SaveData();
-
-        ////Save everything
-        //PlayerPrefs.SetInt("BulletsNum", totalBullets);
-        //PlayerPrefs.SetInt("HitsNum", totalHits);
-        //PlayerPrefs.SetInt("HighScore", rangeHighScore);
-
-        ////Saved only between scenes
-        //PlayerPrefs.SetString("weapon", missionWeapon);
-        //PlayerPrefs.SetString("scope", missionScope);
     }
 
     void OnDestroy() {

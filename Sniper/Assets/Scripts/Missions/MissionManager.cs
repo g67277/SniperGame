@@ -11,10 +11,10 @@ public class MissionManager : MonoBehaviour {
     GameObject view;
 
     public Vector3 ExitPosition;
-    public Vector3 levelPosition;
+    public Vector3 entryPosition;
+    public Vector3 gameplayPosition;
     public Vector3 ResetPosition;
     public bool isReset = false;
-    public int sceneIndex;
 
     bool isExpanding;
 
@@ -25,21 +25,12 @@ public class MissionManager : MonoBehaviour {
 	
 	}
 
-    public void missionSelection(string name) {
-
-        if (name == "Home") {
-            expandLogo();
-
-        } else {
+    public void missionSelection() {
+        if (!DataHolder.inMission) {
             findWeapon();
             StartCoroutine(waitTillDeath(1.5f));
-            Debug.Log("Mission name: " + name);
-
-            if (name == "Mission1") {
-                sceneIndex = 1;
-            } else if (name == "mission2") {
-                sceneIndex = 2;
-            }
+        }else {
+            expandLogo();
         }
     }
 
@@ -50,7 +41,7 @@ public class MissionManager : MonoBehaviour {
     public void afterReset() {
         float[] playerPosition = DataHolder.resetCoordinates;
         Vector3 position = new Vector3(playerPosition[0], playerPosition[1], playerPosition[2]);
-        GameObject.Find("[CameraRig]").transform.position = position;
+        camera.transform.root.transform.position = position;
         ;
     }
 
@@ -60,7 +51,7 @@ public class MissionManager : MonoBehaviour {
     }
 
     public void findWeapon() {
-        GameObject root = gameObject.transform.root.gameObject;
+        GameObject root = camera.transform.root.gameObject;
         for (int i = 0; i < 2; i++) {
             GameObject controller = root.transform.GetChild(i).gameObject;
             for (int j = 0; j < controller.transform.childCount; j++) {
@@ -80,9 +71,11 @@ public class MissionManager : MonoBehaviour {
 
     public void expandLogo() {
         view = Instantiate(circle, logoSpawn.transform.position, logoSpawn.transform.rotation) as GameObject;
-        view.transform.parent = gameObject.transform.parent.transform ;
+        view.transform.parent = camera.transform.parent.transform ;
         view.transform.localScale = new Vector3(0f, 0f, 0f);
-        gameObject.GetComponent<TeleportVive>().enabled = false;
+        if (camera.GetComponent<TeleportVive>() != null) {
+            camera.GetComponent<TeleportVive>().enabled = false;
+        }
         isExpanding = true;
     }
 
@@ -103,18 +96,19 @@ public class MissionManager : MonoBehaviour {
                 if (view.transform.localScale.x <= 5) {
                     view.transform.localScale = new Vector3(view.transform.localScale.x + 0.05f, view.transform.localScale.y + 0.05f, view.transform.localScale.z + 0.05f);
                     if (view.transform.localScale.x > 1.5f && view.transform.localScale.x < 1.8f) {
-                        gameObject.transform.root.transform.position = ExitPosition;
+                        camera.transform.root.transform.position = ExitPosition;
                     }
                 }else if (view.transform.localScale.x > 4.9f) {
                     DataHolder.saveData();
-                    SceneManager.LoadScene(sceneIndex);
+                    SceneManager.LoadScene(DataHolder.missionIndex);
                     deflateLogo();
                 }
             }else if (!isExpanding) {
                 if (view.transform.localScale.x >= 0.1f) {
                     view.transform.localScale = new Vector3(view.transform.localScale.x - 0.05f, view.transform.localScale.y - 0.05f, view.transform.localScale.z - 0.05f);
                     if (view.transform.localScale.x > 1.5f && view.transform.localScale.x < 1.8f) {
-                        gameObject.transform.root.transform.position = levelPosition;
+                        Debug.Log("Level Position" + entryPosition);
+                        camera.transform.root.transform.position = entryPosition;
                     }
                 }else {
                     Destroy(view);

@@ -94,6 +94,9 @@
     <Compile Include="Assets\Scripts\Bullet\BulletPhysics.cs" />
     <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
     <Compile Include="Assets\Scripts\Bullet\SniperBullet.cs" />
+    <Compile Include="Assets\Scripts\Buttons\MissionStart.cs" />
+    <Compile Include="Assets\Scripts\Buttons\NavButton.cs" />
+    <Compile Include="Assets\Scripts\Buttons\ResetButton.cs" />
     <Compile Include="Assets\Scripts\Controllers\ControllerHandling.cs" />
     <Compile Include="Assets\Scripts\DEV ONLY\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Data\DataHolder.cs" />
@@ -107,7 +110,6 @@
     <Compile Include="Assets\Scripts\Missions\LoadWeapon.cs" />
     <Compile Include="Assets\Scripts\Missions\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Missions\MissionRules.cs" />
-    <Compile Include="Assets\Scripts\Missions\ResetButton.cs" />
     <Compile Include="Assets\Scripts\Missions\SceneStart.cs" />
     <Compile Include="Assets\Scripts\Movements\Utilities.cs" />
     <Compile Include="Assets\Scripts\Movements\VRTK_BasicTeleport.cs" />

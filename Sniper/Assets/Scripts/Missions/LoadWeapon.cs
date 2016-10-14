@@ -74,10 +74,6 @@ public class LoadWeapon : MonoBehaviour {
                     break;
             }
         }
-
-        //Remove the weapon prefs
-        DataHolder.deleteData();
-        DataHolder.saveData(); //Testing
     }
 
     void addScope() {

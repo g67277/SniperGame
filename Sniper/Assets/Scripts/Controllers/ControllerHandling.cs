@@ -82,10 +82,7 @@ public class ControllerHandling : MonoBehaviour {
                 || collider.gameObject.tag == "Scope" && controller.transform.childCount < 3) {
                 pickedUpObject = collider.gameObject;
                 canPickup = true;
-            }else if (collider.gameObject.tag == "Reset") {
-                collider.gameObject.GetComponent<ResetButton>().resetScene();
             }
-            
         }
     }
 

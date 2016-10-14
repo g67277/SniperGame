@@ -105,9 +105,6 @@ public class SniperBullet : MonoBehaviour {
         Vector3 forceDirection = new Vector3(fireDirection.x, fireDirection.y, fireDirection.z);
         person.checkHit(target);
 
-        if (target.tag == "MiniTarget") {
-            GameObject.Find("Camera (eye)").GetComponent<MissionManager>().missionSelection(target.name);  //Need to work on this for mission selection **
-        }
         if (target.GetComponent<Rigidbody>() != null) {
             target.GetComponent<Rigidbody>().AddForce(forceDirection * 1000);
         }

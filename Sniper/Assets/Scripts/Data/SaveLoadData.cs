@@ -39,7 +39,7 @@ public class GameData {
     public int rangeHighscore;
     public string missionWeapon;
     public string missionScope;
-    public bool isReset;
+    //public bool isReset;
     public int[] missionScore;
     public double[] sessionAccuracy;
 
@@ -51,7 +51,7 @@ public class GameData {
         //Temporarly saved between missions
         missionWeapon = DataHolder.missionWeapon;
         missionScope = DataHolder.missionScope;
-        isReset = DataHolder.isReset;
+        //isReset = DataHolder.isReset;
 
         //Stores mission Scores;
         sessionAccuracy = DataHolder.sessionAccuracy;
