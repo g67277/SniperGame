@@ -30,8 +30,8 @@ public class GameController : MonoBehaviour {
         }
 
         if (id.Contains("Secondary") && badObject) {
-            int points = 20 * (int)distanceMultiplier;
-            DataHolder.Score = DataHolder.Score + points;
+            int points = 25 * (int)distanceMultiplier;
+            DataHolder.secondaryScore = DataHolder.secondaryScore + points;
             GetComponent<Util>().displayHitScore(points, incomingObject, player);
         }
         if (id.Contains("Main") || id.Contains("Secondary")) {
@@ -45,8 +45,12 @@ public class GameController : MonoBehaviour {
         calculateDistanceMultiplier(Util.CalculateDistance(incomingObject.transform.position, player.transform.position));        //Gets distance from the distance helper method
         if (badGuy) {
             points = points * (int)distanceMultiplier;
+            if (id == "Secondary") {
+                DataHolder.secondaryScore = DataHolder.secondaryScore + points;
+            } else {
+                DataHolder.Score = DataHolder.Score + points;
+            }
         }
-        DataHolder.Score = DataHolder.Score + points;
         if (id.Contains("Main") || id.Contains("Secondary")) {
             GetComponent<MissionRules>().checkRules(id);
         }
@@ -57,6 +61,10 @@ public class GameController : MonoBehaviour {
     void calculateDistanceMultiplier(float distance) {
 
         distance = distance / 100;
+        if (distance > DataHolder.longestHit) {
+            DataHolder.longestHit = (int)Mathf.Ceil(distance);
+        }
+        
         if (distance > 50 && distance < 101){
             distanceMultiplier = 2;
         }else if (distance > 100 && distance < 201) {

@@ -6,10 +6,13 @@ public class DataHolder : MonoBehaviour {
     public static double totalAccuracy;                 //Accuracy for the whole game and range
     public static int sessionBullets;                  //Total bullets fired during each mission
     public static int sessionHits;                     //Total hits during each mission
-    public static int Score;                      //Final score for the range, overwrites the highscore when it surpasses it
+    public static int Score;                           //session Score
+    public static int secondaryScore;                  // score for the secondary targets in the mission
     public static bool inMission;                      //Check if player is in a mission, to start saving the mission score
     public static int missionIndex;                    //Tells us which mission the player is playing
     public static int civiliansKilled;                 //Tells us how many civilians were killed in the mission
+    public static bool missionSuccess;                 //Tells us if the player passed or failed the mission
+    public static int finalScore;                      //Calculated based on MainScore, Secondary Score, Accuracy and civilians killed
 
     //Items to be saved permenantly
     public static double[] sessionAccuracy;            //Accuracy for the current session, not saved for the range, but saved for the levels
@@ -66,15 +69,19 @@ public class DataHolder : MonoBehaviour {
             Score = Score + (int)Mathf.Ceil((float)sessionAccuracy[missionIndex]);
         }
         Debug.Log("Finishing Score: " + Score);
-        if (Score > missionScore[missionIndex]) {
-            missionScore[missionIndex] = Score;
+
+        finalScore = (Score + secondaryScore) - (civiliansKilled * 100) + (int)sessionAccuracy[missionIndex];
+
+        if (finalScore > missionScore[missionIndex]) {
+            missionScore[missionIndex] = finalScore;
         }
+
+        cash = cash + (int)(finalScore * 0.3);
     }
 
     public static void deleteData() {
         missionWeapon = "";
         missionScope = "";
-
     }
 
     public void loadData() {
@@ -87,6 +94,13 @@ public class DataHolder : MonoBehaviour {
             //Temporarly loaded after mission start
             missionWeapon = data.missionWeapon;
             missionScope = data.missionScope;
+
+            missionScore = data.missionScore;
+            longestHit = data.longestHit;
+
+            cash = data.cash;
+
+
         }
     }
 
@@ -95,6 +109,7 @@ public class DataHolder : MonoBehaviour {
     }
 
     void OnDestroy() {
+        Debug.Log("testing");
         SaveLoadData.SaveData();
     }
 }

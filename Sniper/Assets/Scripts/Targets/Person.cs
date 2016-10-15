@@ -37,9 +37,9 @@ public class Person : MonoBehaviour {
     public void checkHit(GameObject incomingObj) {
 
         if (incomingObj.name == "Head_jnt") {
-            personKilled(50);
+            personKilled(100);
         } else if (incomingObj.name == "Spine_jnt") {
-            personKilled(25);
+            personKilled(50);
         } else if (incomingObj.tag == "MiniTarget") {
             animator.Play("death", -1, 0f);
             DataHolder.missionIndex = Convert.ToInt32(id);
@@ -61,7 +61,7 @@ public class Person : MonoBehaviour {
         }
         if (!badGuy) {
             DataHolder.civiliansKilled = DataHolder.civiliansKilled + 1;
-            score = -50;
+            score = -100;
         }
         gameController.GetComponent<GameController>().checkScore(id, badGuy, gameObject, score);
         Invoke("StopBody", 3.0f);
