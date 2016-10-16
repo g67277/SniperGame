@@ -102,10 +102,8 @@ public class GameController : MonoBehaviour {
     public void Success() {
         //mission complete code:
         DataHolder.checkMissionScore();
-        if (boat != null) {
-            boat.GetComponent<ParentMovement>().clip = false;
-        }
-        missionReport.GetComponent<MissionReport>().TransportToMissionReport();
+        DataHolder.missionSuccess = true;
+        Invoke("finishMission", 2.0f);
     }
 
     public void Failure(int missionType) {
@@ -142,6 +140,12 @@ public class GameController : MonoBehaviour {
     public void finishMission() {
         if (boat != null) {
             boat.GetComponent<ParentMovement>().clip = false;
+        }
+        ControllerHandling[] controllerScript = player.GetComponentsInChildren<ControllerHandling>();
+        if (controllerScript != null) {
+            foreach (ControllerHandling childController in controllerScript) {
+                childController.dropObject(true);
+            }
         }
 
         missionReport.GetComponent<MissionReport>().TransportToMissionReport();

@@ -4,6 +4,7 @@ using System.Collections;
 public class ControllerHandling : MonoBehaviour {
 
     public SteamVR_TrackedObject controller;
+    public GameObject pauseMenu;
     GameObject pickedUpObject;
     bool canPickup = false;
 
@@ -24,25 +25,43 @@ public class ControllerHandling : MonoBehaviour {
 
         var device = SteamVR_Controller.Input((int)controller.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip)) {
-            if (controller.transform.childCount > 2) {
-                if (this.gameObject.transform.GetChild(2).tag == "Scope") {
-
-                    this.gameObject.transform.GetChild(2).transform.position = this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopePosition;
-                    this.gameObject.transform.GetChild(2).transform.rotation = Quaternion.Euler(this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopeRotation);
-                    this.gameObject.transform.GetChild(2).transform.parent = null;
-                } else {
-                    if (this.gameObject.transform.GetChild(2).tag == "Pickable") {
-                        gscript.isPickedUp = false;
-                    }
-                    this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
-                    this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
-                    this.gameObject.transform.GetChild(2).transform.parent = null;
-                }
+            if (controller.transform.childCount > 2  && !DataHolder.inMission) {
+                dropObject(false);
             } else if (canPickup) {
                 objectPickup();
             }
         }
 
+        if (pauseMenu != null) {
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.ApplicationMenu)) {
+                if (pauseMenu.activeInHierarchy) {
+                    pauseMenu.SetActive(false);
+                } else {
+                    pauseMenu.SetActive(true);
+                }
+            }
+        }
+    }
+
+    public void dropObject(bool fromMission) {
+        if (fromMission) {
+            if (this.gameObject.transform.childCount > 2)
+                Destroy(this.gameObject.transform.GetChild(2).gameObject);
+        }else {
+            if (this.gameObject.transform.GetChild(2).tag == "Scope") {
+
+                this.gameObject.transform.GetChild(2).transform.position = this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopePosition;
+                this.gameObject.transform.GetChild(2).transform.rotation = Quaternion.Euler(this.gameObject.transform.GetChild(2).GetComponent<Scope>().lastScopeRotation);
+                this.gameObject.transform.GetChild(2).transform.parent = null;
+            } else {
+                if (this.gameObject.transform.GetChild(2).tag == "Pickable") {
+                    gscript.isPickedUp = false;
+                }
+                this.gameObject.transform.GetChild(2).transform.position = lastObjectPosition;
+                this.gameObject.transform.GetChild(2).transform.rotation = lastObjectRotation;
+                this.gameObject.transform.GetChild(2).transform.parent = null;
+            }
+        }
     }
 
     void objectPickup() {

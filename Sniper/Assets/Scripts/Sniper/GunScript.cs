@@ -466,9 +466,11 @@ public class GunScript : MonoBehaviour	{
 
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad) && !isReloading) {
                 float touchX = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x;
-                if (touchX > 0.5) {
+                if (WeaponType.sniper3 == true || WeaponType.sniper6 == true) {
+                    if (touchX > 0.5) {
                         dropMagazine();
-                }
+                    }
+                }   
             }
 
             if (WeaponType.sniper == true || WeaponType.sniperSilencer == true) {
