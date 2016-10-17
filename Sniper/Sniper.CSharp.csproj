@@ -89,6 +89,14 @@
     <Compile Include="Assets\Pedestrian System\Scripts\PedestrianVehicleCheckTrigger.cs" />
     <Compile Include="Assets\Pedestrian System\Scripts\ToolTip.cs" />
     <Compile Include="Assets\Prefabs\Animals\Bird.cs" />
+    <Compile Include="Assets\SMAA\Scripts\DebugPass.cs" />
+    <Compile Include="Assets\SMAA\Scripts\EdgeDetectionMethod.cs" />
+    <Compile Include="Assets\SMAA\Scripts\HDRMode.cs" />
+    <Compile Include="Assets\SMAA\Scripts\MinAttribute.cs" />
+    <Compile Include="Assets\SMAA\Scripts\PredicationPreset.cs" />
+    <Compile Include="Assets\SMAA\Scripts\Preset.cs" />
+    <Compile Include="Assets\SMAA\Scripts\QualityPreset.cs" />
+    <Compile Include="Assets\SMAA\Scripts\SMAA.cs" />
     <Compile Include="Assets\Scripts\Bullet\Ballistics.cs" />
     <Compile Include="Assets\Scripts\Bullet\BulletPhysics.cs" />
     <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
@@ -140,6 +148,7 @@
     <Compile Include="Assets\Scripts\ToBeDeleted\SniperSounds.cs" />
     <Compile Include="Assets\Scripts\ToBeDeleted\basicAI.cs" />
     <Compile Include="Assets\Scripts\Util.cs" />
+    <Compile Include="Assets\Scripts\WeaponStabilization.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -194,6 +203,8 @@
     <None Include="Assets\Pedestrian System\Docs\Instructions.txt" />
     <None Include="Assets\Prefabs\Materials\Backface Bumped Diffuse.shader" />
     <None Include="Assets\Prefabs\Materials\blackInside.shader" />
+    <None Include="Assets\SMAA\Shaders\SMAA.cginc" />
+    <None Include="Assets\SMAA\Shaders\SMAA.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Blit.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />

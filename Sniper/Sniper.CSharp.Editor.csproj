@@ -109,6 +109,8 @@
     <Compile Include="Assets\Pedestrian System\Editor\PedestrianNodeEditor.cs" />
     <Compile Include="Assets\Pedestrian System\Editor\PedestrianObjectEditor.cs" />
     <Compile Include="Assets\Pedestrian System\Editor\PedestrianSystemEditor.cs" />
+    <Compile Include="Assets\SMAA\Scripts\Editor\MinDrawer.cs" />
+    <Compile Include="Assets\SMAA\Scripts\Editor\SMAAEditor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Editor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
     <Compile Include="Assets\SteamVR\Editor\SteamVR_Settings.cs" />
@@ -127,6 +129,8 @@
     <None Include="Assets\Pedestrian System\Docs\Instructions.txt" />
     <None Include="Assets\Prefabs\Materials\Backface Bumped Diffuse.shader" />
     <None Include="Assets\Prefabs\Materials\blackInside.shader" />
+    <None Include="Assets\SMAA\Shaders\SMAA.cginc" />
+    <None Include="Assets\SMAA\Shaders\SMAA.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Blit.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_BlitFlip.shader" />

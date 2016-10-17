@@ -61,6 +61,7 @@ public class GameController : MonoBehaviour {
     void calculateDistanceMultiplier(float distance) {
 
         distance = distance / 100;
+        Debug.Log("this is the distance: " + distance + "meters");
         if (distance > DataHolder.longestHit) {
             DataHolder.longestHit = (int)Mathf.Ceil(distance);
         }
@@ -102,7 +103,7 @@ public class GameController : MonoBehaviour {
     public void Success() {
         //mission complete code:
         DataHolder.checkMissionScore();
-        DataHolder.missionSuccess = true;
+        DataHolder.missionSuccess = true;   
         Invoke("finishMission", 2.0f);
     }
 
