@@ -74,6 +74,10 @@ public class GameController : MonoBehaviour {
             distanceMultiplier = 4;
         } else if (distance > 400 && distance < 601) {
             distanceMultiplier = 5;
+        }else if (distance > 600 && distance < 1501) {
+            distanceMultiplier = 6;
+        }else if (distance > 1500) {
+            distanceMultiplier = 7;
         }
     }
 

@@ -18,6 +18,7 @@ public class MissionStart : MonoBehaviour {
         if (gameController.GetComponent<GameController>().boat != null) {
             gameController.GetComponent<GameController>().boat.GetComponent<ParentMovement>().clip = true;
         }
+        gameController.GetComponent<AnimateScene>().animateScene();
     }
 
     void OnTriggerEnter(Collider col) {

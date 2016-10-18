@@ -64,7 +64,8 @@ public class Person : MonoBehaviour {
             score = -100;
         }
         gameController.GetComponent<GameController>().checkScore(id, badGuy, gameObject, score);
-        Invoke("StopBody", 3.0f);
+        Invoke("StopBody", 6.0f);
+        gameObject.tag = "killed";
     }
 
     // Removes colliders and rigidbodys to save CPU _____________________________________________________

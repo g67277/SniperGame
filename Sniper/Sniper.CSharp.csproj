@@ -97,6 +97,7 @@
     <Compile Include="Assets\SMAA\Scripts\Preset.cs" />
     <Compile Include="Assets\SMAA\Scripts\QualityPreset.cs" />
     <Compile Include="Assets\SMAA\Scripts\SMAA.cs" />
+    <Compile Include="Assets\Scripts\AnimateScene.cs" />
     <Compile Include="Assets\Scripts\Bullet\Ballistics.cs" />
     <Compile Include="Assets\Scripts\Bullet\BulletPhysics.cs" />
     <Compile Include="Assets\Scripts\Bullet\IntegrationMethods.cs" />
