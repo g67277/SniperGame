@@ -10,6 +10,13 @@ public class Person : MonoBehaviour {
     public bool badGuy;                 //If he's a civilian or not
     GameObject gameController;          //Game controller
 
+    [Header("Give a bad guy two locations to run to")]
+    public bool moveBetweenPoints = false;     //
+    public Vector3 bgPosition1;         //Current location and return location
+    public Vector3 bgPosition2;         //Position going to and from
+    public float timeBetweenPositions;  //how long will the character take to cross the distance
+    bool bgP1 = true;                   //Check if the character is in position1
+
     Vector3 position;                   // Save the position to calculate the distance
     int score;                          // Save the score based on the part hit
     Animator animator;                  // Animator attached to the person
@@ -38,14 +45,16 @@ public class Person : MonoBehaviour {
 
         if (incomingObj.name == "Head_jnt") {
             personKilled(100);
-        } else if (incomingObj.name == "Spine_jnt") {
-            personKilled(50);
         } else if (incomingObj.tag == "MiniTarget") {
             animator.Play("death", -1, 0f);
             DataHolder.missionIndex = Convert.ToInt32(id);
             gameController.GetComponent<MissionManager>().missionSelection();
         } else if (gameObject.GetComponent<Animator>() != null) {
-            animator.Play("state2", -1, 0f);
+            if (moveBetweenPoints) {
+                StartCoroutine(badGuySwitchPosition());
+            } else {
+                animator.Play("state2", -1, 0f);
+            }
         }
 
         DataHolder.totalHits = DataHolder.totalHits + 1;                //Saves all the hits through out the game
@@ -66,6 +75,31 @@ public class Person : MonoBehaviour {
         gameController.GetComponent<GameController>().checkScore(id, badGuy, gameObject, score);
         Invoke("StopBody", 6.0f);
         gameObject.tag = "killed";
+    }
+
+    IEnumerator badGuySwitchPosition() {
+        float startTime = Time.time;
+        animator.Play("state2", -1, 0f);
+        
+        if (bgP1) {
+            transform.LookAt(bgPosition2);
+            while (Time.time < startTime + timeBetweenPositions) {
+                transform.position = Vector3.Lerp(bgPosition1, bgPosition2, (Time.time - startTime) / timeBetweenPositions);
+                yield return null;
+            }
+            transform.position = bgPosition2;
+            bgP1 = false;
+        } else {
+            transform.LookAt(bgPosition1);
+            while (Time.time < startTime + timeBetweenPositions) {
+                transform.position = Vector3.Lerp(bgPosition2, bgPosition1, (Time.time - startTime) / timeBetweenPositions);
+                yield return null;
+            }
+            transform.position = bgPosition1;
+            bgP1 = true;
+        }
+        animator.Play("state3", -1, 0f);
+        transform.LookAt(GameObject.Find("[CameraRig]").transform);
     }
 
     // Removes colliders and rigidbodys to save CPU _____________________________________________________
