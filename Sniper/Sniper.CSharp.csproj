@@ -138,6 +138,7 @@
     <Compile Include="Assets\Scripts\Sniper\Scope.cs" />
     <Compile Include="Assets\Scripts\Sniper\Weapons.cs" />
     <Compile Include="Assets\Scripts\Sniper\WindDisplay.cs" />
+    <Compile Include="Assets\Scripts\Targets\BadBuyAttack.cs" />
     <Compile Include="Assets\Scripts\Targets\DummyTarget.cs" />
     <Compile Include="Assets\Scripts\Targets\FadeObjectInOut.cs" />
     <Compile Include="Assets\Scripts\Targets\GameController.cs" />

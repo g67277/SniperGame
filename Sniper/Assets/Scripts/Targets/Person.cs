@@ -9,6 +9,7 @@ public class Person : MonoBehaviour {
     public string id;                   //identifies which person this is for the mission rules
     public bool badGuy;                 //If he's a civilian or not
     GameObject gameController;          //Game controller
+    GameObject playerHead;               //Player's position
 
     [Header("Give a bad guy two locations to run to")]
     public bool moveBetweenPoints = false;     //
@@ -34,6 +35,7 @@ public class Person : MonoBehaviour {
 
     void Start() {
         gameController = GameObject.Find("GameController");
+        playerHead = GameObject.Find("Camera (eye)");
         position = transform.position;
         animator = GetComponent<Animator>();
         if (GetComponent<PedestrianObject>() != null) {
@@ -53,7 +55,9 @@ public class Person : MonoBehaviour {
             if (moveBetweenPoints) {
                 StartCoroutine(badGuySwitchPosition());
             } else {
-                animator.Play("state2", -1, 0f);
+                transform.LookAt(playerHead.transform);
+                //animator.Play("state2", -1, 0f);
+                GetComponent<BadBuyAttack>().startAttacking(true, playerHead);
             }
         }
 
@@ -62,6 +66,9 @@ public class Person : MonoBehaviour {
     }
 
     void personKilled(int hitScore) {
+        if (GetComponent<BadBuyAttack>() != null) {
+            GetComponent<BadBuyAttack>().startAttacking(false);
+        }
         score = hitScore;
 
         animator.Stop();
@@ -78,6 +85,8 @@ public class Person : MonoBehaviour {
     }
 
     IEnumerator badGuySwitchPosition() {
+        Debug.Log("did this get hit?");
+        GetComponent<BadBuyAttack>().startAttacking(false);
         float startTime = Time.time;
         animator.Play("state2", -1, 0f);
         
@@ -99,7 +108,8 @@ public class Person : MonoBehaviour {
             bgP1 = true;
         }
         animator.Play("state3", -1, 0f);
-        transform.LookAt(GameObject.Find("[CameraRig]").transform);
+        transform.LookAt(playerHead.transform);
+        GetComponent<BadBuyAttack>().startAttacking(true, playerHead);
     }
 
     // Removes colliders and rigidbodys to save CPU _____________________________________________________

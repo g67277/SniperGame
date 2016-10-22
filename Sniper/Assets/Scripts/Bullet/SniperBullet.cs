@@ -67,6 +67,8 @@ public class SniperBullet : MonoBehaviour {
                 BarrelHit(hit.collider.gameObject);
             } else if (hit.collider.CompareTag("Civilian")) {
                 TargetHit(hit.collider.gameObject);
+            } else if (hit.collider.CompareTag("MainCamera")) {
+                Debug.Log("You're Hit!!!!");
             } else if (hit.collider.CompareTag("Bird")) {
                 hit.collider.gameObject.transform.root.gameObject.GetComponent<Bird>().hitBird(hit.collider.gameObject);   //Need to take a second look at this **
                 
