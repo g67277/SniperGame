@@ -9,6 +9,7 @@ public class LightScript : MonoBehaviour {
 
     //Items attached to the light that will be main or secondary targets
     public GameObject missileTurrent;
+    public GameObject heliEngine;
 
     GameObject gameController;
     Light objLight;
@@ -35,6 +36,16 @@ public class LightScript : MonoBehaviour {
         if (badObject) {
             if (missileTurrent != null) {
                 missileTurrent.transform.Rotate(-30f, 0f, 0f);
+            }
+            if (heliEngine != null) {
+
+                Animator[] animators = heliEngine.GetComponentsInChildren<Animator>();
+                if (animators != null) {
+                    foreach( Animator animator in animators) {
+                        animator.enabled = false;
+                    }
+                }
+                heliEngine.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }

@@ -8,6 +8,8 @@ public class Person : MonoBehaviour {
 
     public string id;                   //identifies which person this is for the mission rules
     public bool badGuy;                 //If he's a civilian or not
+    public GameObject dependentObject;
+    public GameObject hostage;          //For killing hostage if guy is escaping
     GameObject gameController;          //Game controller
     GameObject playerHead;               //Player's position
 
@@ -15,7 +17,10 @@ public class Person : MonoBehaviour {
     public bool moveBetweenPoints = false;     //
     public Vector3 bgPosition1;         //Current location and return location
     public Vector3 bgPosition2;         //Position going to and from
+    public Vector3 bgPosition3;         //Final Position
     public float timeBetweenPositions;  //how long will the character take to cross the distance
+    public bool animateOnce = false;    //Run the move animation once
+    bool keepAnimating = true;          //Turn off animation based on character
     bool bgP1 = true;                   //Check if the character is in position1
 
     Vector3 position;                   // Save the position to calculate the distance
@@ -23,7 +28,6 @@ public class Person : MonoBehaviour {
     Animator animator;                  // Animator attached to the person
     bool moving = false;                // Checks if the Person has the Pedestrian Object attached
 
-    //*****DEBUGING ONLY******************
     public bool kill = false;
     void Update() {
         if (kill) {
@@ -31,7 +35,6 @@ public class Person : MonoBehaviour {
             kill = false;
         }
     }
-    //****REMOVE BEFORE RELEASE**********
 
     void Start() {
         gameController = GameObject.Find("GameController");
@@ -56,8 +59,10 @@ public class Person : MonoBehaviour {
                 StartCoroutine(badGuySwitchPosition());
             } else {
                 transform.LookAt(playerHead.transform);
-                //animator.Play("state2", -1, 0f);
-                GetComponent<BadBuyAttack>().startAttacking(true, playerHead);
+                animator.Play("state2", -1, 0f);
+                if (GetComponent<BadGuyAttack>() != null) {
+                    GetComponent<BadGuyAttack>().startAttacking(true, playerHead);
+                }
             }
         }
 
@@ -66,8 +71,8 @@ public class Person : MonoBehaviour {
     }
 
     void personKilled(int hitScore) {
-        if (GetComponent<BadBuyAttack>() != null) {
-            GetComponent<BadBuyAttack>().startAttacking(false);
+        if (GetComponent<BadGuyAttack>() != null) {
+            GetComponent<BadGuyAttack>().startAttacking(false);
         }
         score = hitScore;
 
@@ -85,33 +90,62 @@ public class Person : MonoBehaviour {
     }
 
     IEnumerator badGuySwitchPosition() {
-        Debug.Log("did this get hit?");
-        GetComponent<BadBuyAttack>().startAttacking(false);
-        float startTime = Time.time;
-        animator.Play("state2", -1, 0f);
-        
-        if (bgP1) {
-            transform.LookAt(bgPosition2);
-            while (Time.time < startTime + timeBetweenPositions) {
-                transform.position = Vector3.Lerp(bgPosition1, bgPosition2, (Time.time - startTime) / timeBetweenPositions);
-                yield return null;
+        if (keepAnimating) {
+            if (GetComponent<BadGuyAttack>() != null) {
+                GetComponent<BadGuyAttack>().startAttacking(false);
             }
-            transform.position = bgPosition2;
-            bgP1 = false;
-        } else {
-            transform.LookAt(bgPosition1);
-            while (Time.time < startTime + timeBetweenPositions) {
-                transform.position = Vector3.Lerp(bgPosition2, bgPosition1, (Time.time - startTime) / timeBetweenPositions);
-                yield return null;
-            }
-            transform.position = bgPosition1;
-            bgP1 = true;
-        }
-        animator.Play("state3", -1, 0f);
-        transform.LookAt(playerHead.transform);
-        GetComponent<BadBuyAttack>().startAttacking(true, playerHead);
-    }
+            float startTime = Time.time;
 
+            if (bgPosition3.x != 0) {
+                if (hostage != null) {
+                    GetComponent<AudioSource>().Play();
+                    hostage.GetComponent<Person>().kill = true;
+                }
+            }
+                animator.Play("state2", -1, 0f);
+
+            if (bgP1) {
+                transform.LookAt(bgPosition2);
+                while (Time.time < startTime + timeBetweenPositions) {
+                    transform.position = Vector3.Lerp(bgPosition1, bgPosition2, (Time.time - startTime) / timeBetweenPositions);
+                    yield return null;
+                }
+                transform.position = bgPosition2;
+                bgP1 = false;
+            } else {
+                transform.LookAt(bgPosition1);
+                while (Time.time < startTime + timeBetweenPositions) {
+                    transform.position = Vector3.Lerp(bgPosition2, bgPosition1, (Time.time - startTime) / timeBetweenPositions);
+                    yield return null;
+                }
+                transform.position = bgPosition1;
+                bgP1 = true;
+            }
+            if (bgPosition3.x != 0) {
+                if (dependentObject != null && dependentObject.activeInHierarchy) {
+                    while (Time.time < startTime + timeBetweenPositions) {
+                        transform.position = Vector3.Lerp(bgPosition2, bgPosition3, (Time.time - startTime) / timeBetweenPositions);
+                        yield return null;
+                    }
+                    transform.position = bgPosition3;
+                    bgP1 = false;
+                }else {
+                    Debug.Log("Heli is still alive");
+                    dependentObject.transform.root.GetComponent<Helicopter>().heliMove();
+                    yield break;
+                }
+            }
+            animator.Play("state3", -1, 0f);
+            transform.LookAt(playerHead.transform);
+            if (GetComponent<BadGuyAttack>() != null) {
+                GetComponent<BadGuyAttack>().startAttacking(true, playerHead);
+            }
+
+            if (animateOnce) {
+                keepAnimating = false;
+            }
+        }
+    }
     // Removes colliders and rigidbodys to save CPU _____________________________________________________
     Collider[] rigColliders;
     Rigidbody[] rigRigidbodies;

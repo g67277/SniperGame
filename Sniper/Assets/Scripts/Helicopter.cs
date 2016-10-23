@@ -18,6 +18,11 @@ public class Helicopter : MonoBehaviour {
         moveHeliUp = true;
         heliSound.Play();
     }
+
+    public void heliMove() {
+        moveHeliUp = true;
+        heliSound.Play();
+    }
 	
     void Start() {
         //heliAttack();
@@ -28,9 +33,7 @@ public class Helicopter : MonoBehaviour {
             moveUp();
         }
         if (moveToPlayer) {
-
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 10f * Time.deltaTime);
-
             Vector3 offset = transform.position - player.transform.position;
             float sqrLen = offset.sqrMagnitude;
 
@@ -41,9 +44,6 @@ public class Helicopter : MonoBehaviour {
             }
         }
     }
-
-    public Quaternion rotationtest = Quaternion.identity;
-
     void moveUp() {
         transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, Time.deltaTime);
         moveToPlayer = true;

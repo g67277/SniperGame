@@ -78,13 +78,17 @@ public class BadBuyAttack : MonoBehaviour {
 
             //Wait before taking another shot
             if (Sniper) {
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(2f);
             } else if (Assult) {
                 yield return new WaitForSeconds(0.5f);
             } else if (pistol) {
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSeconds(0.8f);
             }
             
         }
+    }
+
+    void setBGClass() {
+
     }
 }

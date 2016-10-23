@@ -12,6 +12,7 @@ public class MissionRules : MonoBehaviour {
 
     //What phase should the level check for success
     [Header("What phase should the level check for success")]
+    public bool phase2Check = false;
     public bool phase3Check = false;
     public bool phase4Check = false;
     public bool phase5Check = false;
@@ -27,6 +28,11 @@ public class MissionRules : MonoBehaviour {
             phase1--;
         } else if (identifier.Contains("Main2") && phase1 == 0) {
             phase2--;
+            if (phase2Check) {
+                if (phase2 == 0) {
+                    GetComponent<GameController>().Success();
+                }
+            }
         } else if (identifier.Contains("Main3") && phase1 == 0 && phase2 == 0) {
             phase3--;
             if (phase3Check) {

@@ -15,7 +15,11 @@ public class Util : MonoBehaviour {
     public void displayHitScore(int hitScore, GameObject incomingObject, GameObject player) {
         Debug.Log("Display score method hit");
         GameObject scoreDisplay2 = Instantiate(hitDisplay, new Vector3(incomingObject.transform.position.x + 0.1f, incomingObject.transform.position.y + 3.3f, incomingObject.transform.position.z - 0.8f), incomingObject.transform.rotation) as GameObject;
-        scoreDisplay2.GetComponent<TextMesh>().text = "+" + hitScore.ToString();
+        if (hitScore < 0) {
+            scoreDisplay2.GetComponent<TextMesh>().text = hitScore.ToString();
+        } else {
+            scoreDisplay2.GetComponent<TextMesh>().text = "+" + hitScore.ToString();
+        }
         scoreDisplay2.transform.LookAt(2 * scoreDisplay2.transform.position - player.transform.position);
     }
 }

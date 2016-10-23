@@ -37,7 +37,6 @@ public class GameController : MonoBehaviour {
         if (id.Contains("Main") || id.Contains("Secondary")) {
             GetComponent<MissionRules>().checkRules(id);
         }
-        
     }
 
     public void checkScore(string id, bool badGuy, GameObject incomingObject, int points) {
@@ -53,6 +52,9 @@ public class GameController : MonoBehaviour {
         }
         if (id.Contains("Main") || id.Contains("Secondary")) {
             GetComponent<MissionRules>().checkRules(id);
+        }
+        if (id.Contains("Hostage")) {
+            finish = true;
         }
 
         GetComponent<Util>().displayHitScore(points, incomingObject, player);
@@ -122,6 +124,9 @@ public class GameController : MonoBehaviour {
             case 3:
                 type3Failure();                 //Special Mission
                 break;
+            case 4:
+                type4Failure();                 //Hostage Mission
+                break;
         }
     }
 
@@ -142,7 +147,12 @@ public class GameController : MonoBehaviour {
 
     }
 
+    public void type4Failure() {
+        finish = true;
+    }
+
     public void finishMission() {
+        Debug.Log("Mission FInished?");
         if (boat != null) {
             boat.GetComponent<ParentMovement>().clip = false;
         }

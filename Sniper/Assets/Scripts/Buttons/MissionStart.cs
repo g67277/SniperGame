@@ -6,6 +6,7 @@ public class MissionStart : MonoBehaviour {
 
     public GameObject gameController;
     public GameObject cameraRig;
+    public BadGuyAttack[] SniperBGA;
 
     Vector3 missionStartPosition;
 
@@ -19,6 +20,9 @@ public class MissionStart : MonoBehaviour {
             gameController.GetComponent<GameController>().boat.GetComponent<ParentMovement>().clip = true;
         }
         gameController.GetComponent<AnimateScene>().animateScene();
+        foreach (BadGuyAttack bga in SniperBGA) {
+            bga.sniperAttack();
+        }
     }
 
     void OnTriggerEnter(Collider col) {
