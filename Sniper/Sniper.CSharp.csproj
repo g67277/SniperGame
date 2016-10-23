@@ -132,6 +132,7 @@
     <Compile Include="Assets\Scripts\Movements\VRTK_TouchpadWalking.cs" />
     <Compile Include="Assets\Scripts\Movements\VRTK_UIGraphicRaycaster.cs" />
     <Compile Include="Assets\Scripts\No Zone\NoZone.cs" />
+    <Compile Include="Assets\Scripts\ObjectBehavior.cs" />
     <Compile Include="Assets\Scripts\ParentMovement.cs" />
     <Compile Include="Assets\Scripts\Sniper\ClipSniper.cs" />
     <Compile Include="Assets\Scripts\Sniper\GunScript.cs" />
